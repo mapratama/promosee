@@ -1,7 +1,7 @@
 ### Perubahan
-- tambahkan satu field gcm_token, facebook_token di table tb_customer
+- tambahkan satu field gcm_token, facebook_token di table tb_customer, dengan tipe data string
 - tambahkan satu tabel FAQ isinya question dan answer
-- buat satu variable token yang di hardcode di website
+- buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini.
 
 
 
@@ -39,7 +39,7 @@ Request parameters:
 | fb_token  | token saat register menggunakan facebook |
 | gcm_token  | google messaging token untuk notif |
 
-Ada kemungkinan saat register menggunakan facebook bukan untuk pertama kalinya (data user telah ada), bila terdapat kasus tersebut update saja data yang dikirim dan jangan sampai terdapat data yang duplicate
+Ada kemungkinan saat register menggunakan facebook, customer bukan untuk pertama kalinya (data user telah ada), bila terdapat kasus tersebut update saja data yang dikirim dan jangan sampai terdapat data yang duplicate
 
 Sukses response untuk LOGIN dan REGISTER:
 ```json
@@ -204,4 +204,149 @@ Response:
 	"min_payment": 500,
 	"redeem_code": "ABCD678",
 	""
-}```
+}
+```
+
+### My Voucher API
+
+End point: `/api/vouchers/created`
+Method: `GET`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+
+Response:
+```json
+{
+	"transactions": [
+		{
+			"id": 78,
+			"id_voucher": 12,
+			"date" : "2016-11-16 05:30:00"
+			"type_payment": "pulsa",
+			"is_used": true
+		},
+		{
+			"id": 79,
+			"id_voucher": 14,
+			"date" : "2016-11-15 05:30:00"
+			"type_payment": "wallet",
+			"used": false
+		}
+
+	]
+
+}
+```
+
+### My Member Card API
+
+End point: `/api/membercards/created`
+Method: `GET`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+
+Response:
+```json
+{
+	"membercards": [
+		{
+			"id": 1,
+			"register_date": "2017-02-02",
+			"nomor": "1234567ABCD",
+			"id_tenant": 12,
+			"total_stamp": 10,
+			"start_date": "2017-02-02",
+			"end_date": "2017-10-02",
+		},
+		{
+			"id": 1,
+			"register_date": "2017-02-02",
+			"nomor": "1234567ABCD",
+			"id_tenant": 12,
+			"total_stamp": 10,
+			"start_date": "2017-02-02",
+			"end_date": "2017-10-02",
+		}
+
+	]
+}
+```
+
+### Redemptions History API
+
+End point: `/api/redemptions/created`
+Method: `GET`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+
+Response:
+```json
+{
+	"redemptions": [
+		{
+			"id": 1,
+			"date" : "2016-11-16 05:30:00",
+			"id_voucher": 12,
+			"show_redeem": yes
+		},
+		{
+			"id": 2,
+			"date" : "2016-12-15 07:30:00",
+			"id_voucher": 17,
+			"show_redeem": no
+		}
+	]
+}
+```
+
+
+### My Wallet API
+
+End point: `/api/wallets/created`
+Method: `GET`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+
+Response:
+```json
+{
+	"wallets": [
+		{
+			"id": 1,
+			"nomor", "1234567ABCDE",
+			"amount": 50000,
+			"type": "deposit",
+			"status": "pending",
+			"remark": "test",
+			"balance": 10000,
+			"date" : "2016-12-15 07:30:00",
+		},
+		{
+			"id": 2,
+			"nomor", "789789FGHUJK",
+			"amount": 20000,
+			"type": "withdraw",
+			"status": "approve",
+			"remark": "test",
+			"balance": 10000,
+			"date" : "2016-12-15 07:30:00",
+		}
+	]
+}
+```
