@@ -225,16 +225,16 @@ Response:
 		{
 			"id": 78,
 			"id_voucher": 12,
-			"date" : "2016-11-16 05:30:00"
+			"date" : "2016-11-16 05:30:00",
 			"type_payment": "pulsa",
-			"is_used": True
+			"is_used": "yes"
 		},
 		{
 			"id": 79,
 			"id_voucher": 14,
-			"date" : "2016-11-15 05:30:00"
+			"date" : "2016-11-15 05:30:00",
 			"type_payment": "wallet",
-			"used": False
+			"used": "no"
 		}
 
 	]
@@ -299,13 +299,13 @@ Response:
 			"id": 1,
 			"date" : "2016-11-16 05:30:00",
 			"id_voucher": 12,
-			"show_redeem": True,
+			"show_redeem": "yes",
 		},
 		{
 			"id": 2,
 			"date" : "2016-12-15 07:30:00",
 			"id_voucher": 17,
-			"show_redeem": False
+			"show_redeem": "no"
 		}
 	]
 }
@@ -329,7 +329,7 @@ Response:
 	"wallets": [
 		{
 			"id": 1,
-			"nomor", "1234567ABCDE",
+			"nomor": "1234567ABCDE",
 			"amount": 50000,
 			"type": "deposit",
 			"status": "pending",
@@ -339,7 +339,7 @@ Response:
 		},
 		{
 			"id": 2,
-			"nomor", "789789FGHUJK",
+			"nomor": "789789FGHUJK",
 			"amount": 20000,
 			"type": "withdraw",
 			"status": "approve",
@@ -350,3 +350,9 @@ Response:
 	]
 }
 ```
+
+### Buy Voucher API
+### Subscribe API
+### Redeem API
+### Contact Us API
+### Add Member Card API
