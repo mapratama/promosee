@@ -7,48 +7,115 @@ Request parameters:
 
 | Parameter | Description |
 | --------- | ----------- |
-| token     | Random string of characters |
+| token     | Auth TOKEN |
 | email     | User's email  |
 | password  | User's password  |
 
-Example request:
-```sh
-http post http://202.179.188.146/api/auth/login email="email@example.com" password="mypassword"
-```
-
-
 Successful response parameters:
-
-| Parameter     | Description |
-| ------------- | ----------- |
-| session_key   | Random characters that uniquely identifies a user (similar to HTTP cookies) |
-| full_name    | User's full name.  |
-| mobile_phone    | Mobile phone in `+628123123` or `08123123` formats  |
-| email     | User's email  |
-| birthday  | Birthday in `YYYY-MM-DD` format  |
-| gender    | `m` or `f`  |
-
-Example response:
 ```json
 {
-    "session_key": "123nasdkh3423esad833898475",
-    "full_name": "John Doe",
-    "mobile_phone": "+628123123",
-    "email": "john@doe.com",
-    "birthday": "1990-09-23",
-    "gender": "f",
-    "address": "",
-    "news": [
-    {
-      "event_id": 120,
-      "string_id": "relevant-leadership-2016",
-      "title": "Relevant Leadership 2016",
-      "description": "A leadership and worship conference for pastors and church leaders.",
-      "startdate": "2016-05-11",
-      "enddate": "2016-07-31",
-      "photo_url": "http://202.179.188.146/bannerfolder/20160511092324-20160229091952-MY JPCC_RL 16.jpg",
-      "registration_url": null
-    },
-    ]
+	"customer": {
+		"email": "test@gmail.com",
+		"name": "test",
+		"phone": "087829976921",
+		"city": "jakarta",
+		"address": "jalan monas",
+		"image_url": "http://promosee.com/image.jpg",
+		"balance": 65000,
+	},
+	"faqs": [
+		{
+			"question": "Bagaimana cara topup?",
+			"answer": "Dengan menklik tombol dan ..."
+		},
+		{
+			"question": "Bagaimana cara beli voucher?",
+			"answer": "Dengan menklik tombol dan ..."
+		}
+	]
+	"kategori_tenant": [
+		{
+			"id": 1,
+			"name": "Food",
+			"image_url": "http://promosee.com/image.jpg",
+			"tenant": [	
+				{
+					"id": 1,
+					"code": "JNJ100",
+					"name": "JunNJan",
+					"tipe": "online",
+					"telp": "021456789",
+					"alamat": "Jalan Cikutra Bandung", 
+					"email": "junnjan@mail.com",
+					"logo_url": "http://promosee.com/image.jpg",
+					"banner": "http://promosee.com/image.jpg"
+					"locations": [
+						{
+							"latitude": -6.144562,
+							"longitude": 106.7657,
+						},
+						{
+							"latitude": -6.23334,
+							"longitude": 105.12998,
+						}
+					]
+				},
+				{
+					"id": 2,
+					"code": "PRD100",
+					"name": "Prodia",
+					"tipe": "offline",
+					"telp": "021456789",
+					"alamat": "Jalan Musi Jakarta",
+					"email": "prodia@mail.com",
+					"logo_url": "http://promosee.com/image.jpg",
+					"banner": "http://promosee.com/image.jpg"
+					"locations": [
+						{
+							"latitude": -6.144562,
+							"longitude": 106.7657,
+						},
+						{
+							"latitude": -6.23334,
+							"longitude": 105.12998,
+						}
+					]
+				},
+			]
+
+		}
+	],
+	"vouchers": [
+		{
+			"name": "Voucher Prodia",
+			"subject": "Voucher Prodia 50.000",
+			"description": "Dapatkan voucher prodia senilai 50000",
+			"price": 1000,
+			"id_tenant": 32, 
+			"start_date": 2017-02-02,
+			"end_date": 2017-04-04,
+			"voucher_image_url": "http://promosee.com/image.jpg",
+			"slide_image_url": "http://promosee.com/image.jpg",
+			"big_image_url": "http://promosee.com/image.jpg",
+			"min_payment": 500,
+			"redeem_code": "ABCD678",
+			""
+		},
+		{
+			"name": "Voucher JunNJan",
+			"subject": "Voucher JunJJan 50.000",
+			"description": "Dapatkan voucher JunNjan senilai 50000",
+			"price": 1500,
+			"id_tenant": 13, 
+			"start_date": 2017-02-02,
+			"end_date": 2017-04-04,
+			"voucher_image_url": "http://promosee.com/image.jpg",
+			"slide_image_url": "http://promosee.com/image.jpg",
+			"big_image_url": "http://promosee.com/image.jpg",
+			"min_payment": 500,
+			"redeem_code": "ABCD678",
+			""
+		},
+	],
 }
 ```
