@@ -32,7 +32,7 @@ Successful response parameters:
 			"question": "Bagaimana cara beli voucher?",
 			"answer": "Dengan menklik tombol dan ..."
 		}
-	]
+	],
 	"kategori_tenant": [
 		{
 			"id": 1,
