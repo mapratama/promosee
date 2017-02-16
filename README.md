@@ -227,14 +227,14 @@ Response:
 			"id_voucher": 12,
 			"date" : "2016-11-16 05:30:00"
 			"type_payment": "pulsa",
-			"is_used": true
+			"is_used": True
 		},
 		{
 			"id": 79,
 			"id_voucher": 14,
 			"date" : "2016-11-15 05:30:00"
 			"type_payment": "wallet",
-			"used": false
+			"used": False
 		}
 
 	]
@@ -299,13 +299,13 @@ Response:
 			"id": 1,
 			"date" : "2016-11-16 05:30:00",
 			"id_voucher": 12,
-			"show_redeem": yes
+			"show_redeem": True,
 		},
 		{
 			"id": 2,
 			"date" : "2016-12-15 07:30:00",
 			"id_voucher": 17,
-			"show_redeem": no
+			"show_redeem": False
 		}
 	]
 }
