@@ -235,7 +235,7 @@ Response:
 			"id_voucher": 12,
 			"date" : "2016-11-16 05:30:00",
 			"type_payment": "pulsa",
-			"is_used": "yes"
+			"used": "yes"
 		},
 		{
 			"id": 79,
