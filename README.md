@@ -186,7 +186,8 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
-| id     | voucher id |
+| id_user     | user id |
+| id_voucher     | voucher id |
 
 Response:
 ```json
@@ -217,6 +218,7 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
+| id_user     | user id |
 
 Response:
 ```json
@@ -252,6 +254,7 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
+| id_user     | user id |
 
 Response:
 ```json
@@ -290,6 +293,7 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
+| id_user     | user id |
 
 Response:
 ```json
@@ -322,6 +326,7 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
+| id_user     | user id |
 
 Response:
 ```json
