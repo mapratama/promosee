@@ -104,12 +104,12 @@ Sukses response untuk LOGIN dan REGISTER:
 					"id": 1,
 					"code": "JNJ100",
 					"name": "JunNJan",
-					"tipe": "online",
-					"telp": "021456789",
-					"alamat": "Jalan Cikutra Bandung", 
+					"type": "online",
+					"phone": "021456789",
+					"address": "Jalan Cikutra Bandung", 
 					"email": "junnjan@mail.com",
 					"logo_url": "http://promosee.com/image.jpg",
-					"banner": "http://promosee.com/image.jpg",
+					"banner_url": "http://promosee.com/image.jpg",
 					"locations": [
 						{
 							"latitude": -6.144562,
@@ -125,12 +125,12 @@ Sukses response untuk LOGIN dan REGISTER:
 					"id": 2,
 					"code": "PRD100",
 					"name": "Prodia",
-					"tipe": "offline",
-					"telp": "021456789",
-					"alamat": "Jalan Musi Jakarta",
+					"type": "offline",
+					"phone": "021456789",
+					"address": "Jalan Musi Jakarta",
 					"email": "prodia@mail.com",
 					"logo_url": "http://promosee.com/image.jpg",
-					"banner": "http://promosee.com/image.jpg",
+					"banner_url": "http://promosee.com/image.jpg",
 					"locations": [
 						{
 							"latitude": -6.144562,
