@@ -44,7 +44,8 @@ Ada kemungkinan saat register menggunakan facebook, customer bukan untuk pertama
 Sukses response untuk LOGIN dan REGISTER:
 ```json
 {
-	"customer": {
+	"user": {
+		"id": 1,
 		"email": "test@gmail.com",
 		"name": "test",
 		"phone": "087829976921",
@@ -55,20 +56,24 @@ Sukses response untuk LOGIN dan REGISTER:
 	},
 	"faqs": [
 		{
+			"id": 1,
 			"question": "Bagaimana cara topup?",
 			"answer": "Dengan menklik tombol dan ..."
 		},
 		{
+			"id": 2,
 			"question": "Bagaimana cara beli voucher?",
 			"answer": "Dengan menklik tombol dan ..."
 		}
 	],
 	"banners": [
 		{
+			"id": 1,
 			"banner_url": "http://promosee.com/image.jpg",
 			"link": "http://promosee.com"
 		},
 		{
+			"id": 2,
 			"banner_url": "http://promosee.com/image.jpg",
 			"link": "http://prodia.com"
 		}
@@ -192,6 +197,7 @@ Request parameters:
 Response:
 ```json
 {
+	"id": 1,
 	"name": "Voucher Prodia",
 	"subject": "Voucher Prodia 50.000",
 	"description": "Dapatkan voucher prodia senilai 50000",
