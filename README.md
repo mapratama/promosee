@@ -94,7 +94,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"description": "It's description events"
 		}
 	],
-	"kategori_tenant": [
+	"categories": [
 		{
 			"id": 1,
 			"name": "Food",
