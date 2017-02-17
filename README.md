@@ -99,7 +99,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"id": 1,
 			"name": "Food",
 			"image_url": "http://promosee.com/image.jpg",
-			"tenant": [	
+			"tenants": [	
 				{
 					"id": 1,
 					"code": "JNJ100",
