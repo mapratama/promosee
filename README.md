@@ -75,12 +75,14 @@ Sukses response untuk LOGIN dan REGISTER:
 		{
 			"id": 1,
 			"banner_url": "http://promosee.com/image.jpg",
-			"link": "http://promosee.com"
+			"link": "http://promosee.com",
+			"id_voucher": 1,
 		},
 		{
 			"id": 2,
 			"banner_url": "http://promosee.com/image.jpg",
-			"link": "http://prodia.com"
+			"link": "http://prodia.com",
+			"id_voucher": 2,
 		}
 	],
 	"banks": [
@@ -106,6 +108,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"subject": "Subject News",
 			"image_url": "http://promosee.com/image.jpg",
 			"description": "It's description news"
+			"id_voucher": 1,
 		},
 		{
 			"id": 2,
@@ -113,6 +116,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"subject": "Subject Event",
 			"image_url": "http://promosee.com/image.jpg",
 			"description": "It's description events"
+			"id_voucher": 2,
 		}
 	],
 	"categories": [
@@ -120,6 +124,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"id": 1,
 			"name": "Food",
 			"image_url": "http://promosee.com/image.jpg",
+			"order_id": 1,
 			"tenants": [	
 				{
 					"id": 1,
@@ -129,6 +134,7 @@ Sukses response untuk LOGIN dan REGISTER:
 					"phone": "021456789",
 					"address": "Jalan Cikutra Bandung", 
 					"email": "junnjan@mail.com",
+					"order_id": 1,
 					"logo_url": "http://promosee.com/image.jpg",
 					"banner_url": "http://promosee.com/image.jpg",
 					"locations": [
@@ -150,6 +156,7 @@ Sukses response untuk LOGIN dan REGISTER:
 					"phone": "021456789",
 					"address": "Jalan Musi Jakarta",
 					"email": "prodia@mail.com",
+					"order_id": 2,
 					"logo_url": "http://promosee.com/image.jpg",
 					"banner_url": "http://promosee.com/image.jpg",
 					"locations": [
@@ -276,6 +283,7 @@ Response:
 			"id": 1,
 			"name": "Food",
 			"image_url": "http://promosee.com/image.jpg",
+			"order_id": 1,
 			"tenants": [	
 				{
 					"id": 1,
@@ -285,6 +293,7 @@ Response:
 					"phone": "021456789",
 					"address": "Jalan Cikutra Bandung", 
 					"email": "junnjan@mail.com",
+					"order_id": 1,
 					"logo_url": "http://promosee.com/image.jpg",
 					"banner_url": "http://promosee.com/image.jpg",
 					"locations": [
@@ -306,6 +315,7 @@ Response:
 					"phone": "021456789",
 					"address": "Jalan Musi Jakarta",
 					"email": "prodia@mail.com",
+					"order_id": 2,
 					"logo_url": "http://promosee.com/image.jpg",
 					"banner_url": "http://promosee.com/image.jpg",
 					"locations": [
