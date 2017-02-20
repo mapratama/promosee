@@ -2,6 +2,9 @@
 - tambahkan satu field gcm_token, facebook_token di table tb_customer, dengan tipe data string
 - tambahkan satu tabel FAQ isinya question dan answer
 - tambahkan id_voucher di tabel pro_berita_acara
+- tambahkan id_voucher di tabel banner
+- tambahkan order_id di tabel kategori
+- tambahkan order_id di tabel tenant
 - buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini, token : "9090opop"
 
 
@@ -403,40 +406,6 @@ Response:
 ### Buy Voucher API
 
 End point: `/api/vouchers/buy`
-Method: `POST`
-
-Request parameters:
-
-| Parameter | Description |
-| --------- | ----------- |
-| token     | Auth TOKEN |
-| id_user     | user id |
-| id_voucher     | voucher id |
-| id_type_payment     | type payment id |
-
-Response:
-```json
-{
-	"id": 1,
-	"name": "Voucher Prodia",
-	"subject": "Voucher Prodia 50.000",
-	"description": "Dapatkan voucher prodia senilai 50000",
-	"price": 1000,
-	"id_tenant": 32, 
-	"id_voucher": 2,
-	"start_date": 2017-02-02,
-	"end_date": 2017-04-04,
-	"voucher_image_url": "http://promosee.com/image.jpg",
-	"slide_image_url": "http://promosee.com/image.jpg",
-	"big_image_url": "http://promosee.com/image.jpg",
-	"min_payment": 500,
-	"redeem_code": "ABCD678",
-}
-```
-
-### Subscribe API
-
-End point: `/api/vouchers/subsribe`
 Method: `POST`
 
 Request parameters:
