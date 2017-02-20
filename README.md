@@ -2,7 +2,8 @@
 - tambahkan satu field gcm_token, facebook_token di table tb_customer, dengan tipe data string
 - tambahkan satu tabel FAQ isinya question dan answer
 - tambahkan id_voucher di tabel pro_berita_acara
-- buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini.
+- buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini, token : "9090opop"
+
 
 
 
