@@ -367,8 +367,153 @@ Response:
 }
 ```
 
+### Redemptions History API
+
+End point: `/api/redemptions/created`
+Method: `GET`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user     | user id |
+
+Response:
+```json
+{
+	"redemptions": [
+		{
+			"id": 1,
+			"date": 2017-02-02,
+			"id_voucher": 1,
+			"show_redeem": "yes",
+		},
+		{
+			"id": 2,
+			"date": 2017-02-02,
+			"id_voucher": 3,
+			"show_redeem": "no",
+		}
+	]
+	
+}
+```
+
 ### Buy Voucher API
+
+End point: `/api/vouchers/buy`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user     | user id |
+| id_voucher     | voucher id |
+| id_type_payment     | type payment id |
+
+Response:
+```json
+{
+	"id": 1,
+	"name": "Voucher Prodia",
+	"subject": "Voucher Prodia 50.000",
+	"description": "Dapatkan voucher prodia senilai 50000",
+	"price": 1000,
+	"id_tenant": 32, 
+	"id_voucher": 2,
+	"start_date": 2017-02-02,
+	"end_date": 2017-04-04,
+	"voucher_image_url": "http://promosee.com/image.jpg",
+	"slide_image_url": "http://promosee.com/image.jpg",
+	"big_image_url": "http://promosee.com/image.jpg",
+	"min_payment": 500,
+	"redeem_code": "ABCD678",
+}
+```
+
 ### Subscribe API
+
+End point: `/api/vouchers/subsribe`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user     | user id |
+| id_voucher     | voucher id |
+| id_type_payment     | type payment id |
+
+Response:
+```json
+{
+	"id": 1,
+	"name": "Voucher Prodia",
+	"subject": "Voucher Prodia 50.000",
+	"description": "Dapatkan voucher prodia senilai 50000",
+	"price": 1000,
+	"id_tenant": 32, 
+	"id_voucher": 2,
+	"start_date": 2017-02-02,
+	"end_date": 2017-04-04,
+	"voucher_image_url": "http://promosee.com/image.jpg",
+	"slide_image_url": "http://promosee.com/image.jpg",
+	"big_image_url": "http://promosee.com/image.jpg",
+	"min_payment": 500,
+	"redeem_code": "ABCD678",
+}
+```
+
 ### Redeem API
-### Contact Us API
+
+End point: `/api/redemptions/add`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user     | user id |
+| id_voucher     | voucher id |
+
+Response:
+```json
+{
+	"id": 1,
+	"date": 2017-02-02,
+	"id_voucher": 1,
+	"show_redeem": "yes",
+}
+```
+
 ### Add Member Card API
+
+End point: `/api/redemptions/add`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user     | user id |
+| id_tenant     | tenant id |
+| nomor     | nomor membercard |
+
+Response:
+```json
+{
+	"id": 1,
+	"register_date": "2017-02-02",
+	"nomor": "1234567ABCD",
+	"id_tenant": 2,
+	"total_stamp": 10,
+	"start_date": "2017-02-02",
+	"end_date": "2017-10-02",
+}
+```
