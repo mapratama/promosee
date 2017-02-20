@@ -1,6 +1,7 @@
 ### Perubahan
 - tambahkan satu field gcm_token, facebook_token di table tb_customer, dengan tipe data string
 - tambahkan satu tabel FAQ isinya question dan answer
+- tambahkan id_voucher di tabel pro_berita_acara
 - buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini.
 
 
@@ -153,7 +154,8 @@ Sukses response untuk LOGIN dan REGISTER:
 			"subject": "Voucher Prodia 50.000",
 			"description": "Dapatkan voucher prodia senilai 50000",
 			"price": 1000,
-			"id_tenant": 32, 
+			"id_tenant": 32,
+			"id_voucher": 1,
 			"start_date": 2017-02-02,
 			"end_date": 2017-04-04,
 			"voucher_image_url": "http://promosee.com/image.jpg",
@@ -168,7 +170,8 @@ Sukses response untuk LOGIN dan REGISTER:
 			"subject": "Voucher JunJJan 50.000",
 			"description": "Dapatkan voucher JunNjan senilai 50000",
 			"price": 1500,
-			"id_tenant": 13, 
+			"id_tenant": 13,
+			"id_voucher": 2,
 			"start_date": 2017-02-02,
 			"end_date": 2017-04-04,
 			"voucher_image_url": "http://promosee.com/image.jpg",
@@ -203,6 +206,7 @@ Response:
 	"description": "Dapatkan voucher prodia senilai 50000",
 	"price": 1000,
 	"id_tenant": 32, 
+	"id_voucher": 2,
 	"start_date": 2017-02-02,
 	"end_date": 2017-04-04,
 	"voucher_image_url": "http://promosee.com/image.jpg",
