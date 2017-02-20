@@ -111,7 +111,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"title": "News",
 			"subject": "Subject News",
 			"image_url": "http://promosee.com/image.jpg",
-			"description": "It's description news"
+			"description": "It's description news",
 			"id_voucher": 1,
 		},
 		{
@@ -119,7 +119,7 @@ Sukses response untuk LOGIN dan REGISTER:
 			"title": "Event",
 			"subject": "Subject Event",
 			"image_url": "http://promosee.com/image.jpg",
-			"description": "It's description events"
+			"description": "It's description events",
 			"id_voucher": 2,
 		}
 	],
