@@ -7,6 +7,7 @@
 - tambahkan order_id di tabel tenant
 - buat tabel bank dengan field (id, nama_bank, norek, nama_rekening, logo_url)
 - tambahkan field metode, id_bank_promosee, nama_pengirim, no_rekening_pengirim di tabel pro_dpwd_trans
+- tambahkan field no_ktp di tabel pro_member_card
 - buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk - authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini, token : "9090opop"
 
 
@@ -23,6 +24,8 @@ Request parameters:
 | email     | email user  |
 | password  | password user  |
 | gcm_token  | google messaging token untuk notif |
+
+Login seperti biasa sesuai dengan email dan password, gcm_token hanya disimpan saya di tabel customer bila email dan password valid dan bisa login.
 
 
 ### Register API
@@ -44,7 +47,8 @@ Request parameters:
 | fb_token  | token saat register menggunakan facebook |
 | gcm_token  | google messaging token untuk notif |
 
-Ada kemungkinan saat register menggunakan facebook, customer bukan untuk pertama kalinya (data user telah ada), bila terdapat kasus tersebut update saja data yang dikirim dan jangan sampai terdapat data yang duplicate
+Seluruh data termasuk FB token hanya disimpan saja di tabel customer.
+Sebelum disimpan cek terlebih dahulu bila memang fb_token yang dikirim telah terdapat di database, maka update saja data yang dikirim tanpa membuat satu row customer baru.
 
 Sukses response untuk LOGIN dan REGISTER:
 ```json
@@ -221,7 +225,8 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
-| id_user     | user id |
+
+API ini hanya untuk mengambil semua list data voucher yang masih aktif ataupun didalam periode aktif (diantara start date dan end date)
 
 Response:
 ```json
@@ -273,7 +278,9 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
-| id_user     | user id |
+
+API ini hanya untuk mengambil semua list data category yang masih aktif, beserta detail tenant didalamnya.
+Struktur response sama dengan response login dan register
 
 Response:
 ```json
@@ -348,6 +355,8 @@ Request parameters:
 | token     | Auth TOKEN |
 | id_user     | user id |
 
+API ini untuk mengambil semua list data transaksi voucher sesuai user id yang dikirimkan
+
 Response:
 ```json
 {
@@ -384,6 +393,8 @@ Request parameters:
 | token     | Auth TOKEN |
 | id_user     | user id |
 
+API ini untuk mengambil semua list data member card yang telah terdaftar berdasarkan user id yang dikirim
+
 Response:
 ```json
 {
@@ -411,39 +422,6 @@ Response:
 }
 ```
 
-### Redemptions History API
-
-End point: `/api/redemptions/created`
-Method: `GET`
-
-Request parameters:
-
-| Parameter | Description |
-| --------- | ----------- |
-| token     | Auth TOKEN |
-| id_user     | user id |
-
-Response:
-```json
-{
-	"redemptions": [
-		{
-			"id": 1,
-			"date" : "2016-11-16 05:30:00",
-			"id_voucher": 12,
-			"show_redeem": "yes",
-		},
-		{
-			"id": 2,
-			"date" : "2016-12-15 07:30:00",
-			"id_voucher": 17,
-			"show_redeem": "no"
-		}
-	]
-}
-```
-
-
 ### My Wallet API
 
 End point: `/api/wallets/created`
@@ -455,6 +433,8 @@ Request parameters:
 | --------- | ----------- |
 | token     | Auth TOKEN |
 | id_user     | user id |
+
+API ini untuk mengambil semua list dpwd transaction yang telah dilakukan oleh user id yang dikirim
 
 Response:
 ```json
@@ -500,6 +480,8 @@ Request parameters:
 | token     | Auth TOKEN |
 | id_user     | user id |
 
+API ini untuk mengambil semua list dpwd transaction yang telah dilakukan oleh user id yang dikirim
+
 Response:
 ```json
 {
@@ -535,6 +517,9 @@ Request parameters:
 | id_voucher     | voucher id |
 | id_type_payment     | type payment id |
 
+API ini untuk membuat sebuah voucher transaction, type payment id ini disesuaikan dengan tabel pro_type_payment (1/2)
+Response yang dikembalikan adalah satu JSON detail dari voucher tersebut.
+
 Response:
 ```json
 {
@@ -555,7 +540,7 @@ Response:
 }
 ```
 
-### Redeem API
+### Redemption API
 
 End point: `/api/redemptions/add`
 Method: `POST`
@@ -567,6 +552,8 @@ Request parameters:
 | token     | Auth TOKEN |
 | id_user     | user id |
 | id_voucher     | voucher id |
+
+API ini untuk membuat sebuah redemption. Response yang dikembalikan adalah satu JSON redemption yang terbuat tersebut.
 
 Response:
 ```json
@@ -590,7 +577,11 @@ Request parameters:
 | token     | Auth TOKEN |
 | id_user     | user id |
 | id_tenant     | tenant id |
-| nomor     | nomor membercard |
+| nomor_membercard     | nomor membercard |
+| nomor_ktp     | nomor ktp user |
+
+API ini untuk mendaftarkan sebuah member card. Terdapat dua cara dengan hanya mendaftarkan nomor ktp saja atau menggunakan nomor membercard
+Response yang dikembalikan adalah satu JSON member card yang telah terbuat tersebut.
 
 Response:
 ```json
@@ -615,11 +606,15 @@ Request parameters:
 | Parameter | Description |
 | --------- | ----------- |
 | token     | Auth TOKEN |
+| id_user     | user id |
 | metode     | metode pengiriman (tunai / atm / e-banking) |
 | id_bank     | bank id |
 | jumlah     | jumlah yang ditaransfer |
 | nama     | nama pemegang rekening |
 | no_rekening     | no rekening pengirim |
+
+API ini untuk mengkonfirmasi sebuah pembayaran yang telah dilakukan user
+Response yang dikembalikan adalah satu JSON dpwd transaction yang telah terbuat tersebut.
 
 Response:
 ```json
@@ -634,5 +629,31 @@ Response:
 	"remark": "test",
 	"balance": 10000,
 	"date" : "2016-12-15 07:30:00",
+}
+```
+
+
+### Hide Redemption List API
+
+End point: `/api/redemptions/hide`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_redeem     | redemption id |
+
+API ini untuk hide redemption list, atau mengubah field show_redeem dari yes menjadi no
+Response yang dikembalikan adalah satu JSON redemption yang telah diubah tersebut.
+
+Response:
+```json
+{
+	"id": 1,
+	"date": 2017-02-02,
+	"id_voucher": 1,
+	"show_redeem": "no",
 }
 ```
