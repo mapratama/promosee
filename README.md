@@ -657,3 +657,38 @@ Response:
 	"show_redeem": "no",
 }
 ```
+
+
+### Edit Profile API
+
+End point: `/api/auth/edit-profile`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user      | id user  |
+| name      | nama user  |
+| email     | email user  |
+| password  | password user  |
+| phone  | phone user  |
+| city  | kota user  |
+| address  | alamat user  |
+
+API ini dibuat untuk edit profile data customer sesuai id user yang dikirimkan. Response yang dikembalikan adalah satu JSON yang berisi detail user yang telah berubah.
+
+Response
+```json
+{
+	"id": 1,
+	"email": "test@gmail.com",
+	"name": "test",
+	"phone": "087829976921",
+	"city": "jakarta",
+	"address": "jalan monas",
+	"image_url": "http://promosee.com/image.jpg",
+	"balance": 65000,
+}
+```
