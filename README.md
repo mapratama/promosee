@@ -5,9 +5,9 @@
 - tambahkan id_voucher di tabel banner
 - tambahkan order_id di tabel kategori
 - tambahkan order_id di tabel tenant
-- buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini, token : "9090opop"
-
-
+- buat tabel bank dengan field (id, nama_bank, norek, nama_rekening, logo_url)
+- tambahkan field metode, id_bank_promosee, nama_pengirim, no_rekening_pengirim di tabel pro_dpwd_trans
+- buat satu variable token yang di hardcode di website, random string dengan length lebih dari 10. Ini dipergunakan untuk - authentikasi request yang masuk, dan seluruh request API harus mengirimkan ini, token : "9090opop"
 
 
 ### Login API
@@ -81,6 +81,22 @@ Sukses response untuk LOGIN dan REGISTER:
 			"id": 2,
 			"banner_url": "http://promosee.com/image.jpg",
 			"link": "http://prodia.com"
+		}
+	],
+	"banks": [
+		{
+			"id": 1,
+			"nama": "BCA",
+			"nomor_rekening": "1234567EFGH",
+			"nama_rekening": "promosee account",
+			"logo_url": "http://promosee.com/image.jpg",
+		},
+		{
+			"id": 2,
+			"nama": "BNI",
+			"nomor_rekening": "456789KLMNOP",
+			"nama_rekening": "promosee account",
+			"logo_url": "http://promosee.com/image.jpg",
 		}
 	],
 	"news_events": [
@@ -188,9 +204,9 @@ Sukses response untuk LOGIN dan REGISTER:
 }
 ```
 
-### Voucher Details API
+### Voucher List API
 
-End point: `/api/vouchers/details`
+End point: `/api/vouchers/list`
 Method: `GET`
 
 Request parameters:
@@ -199,26 +215,114 @@ Request parameters:
 | --------- | ----------- |
 | token     | Auth TOKEN |
 | id_user     | user id |
-| id_voucher     | voucher id |
 
 Response:
 ```json
 {
-	"id": 1,
-	"name": "Voucher Prodia",
-	"subject": "Voucher Prodia 50.000",
-	"description": "Dapatkan voucher prodia senilai 50000",
-	"price": 1000,
-	"id_tenant": 32, 
-	"id_voucher": 2,
-	"start_date": 2017-02-02,
-	"end_date": 2017-04-04,
-	"voucher_image_url": "http://promosee.com/image.jpg",
-	"slide_image_url": "http://promosee.com/image.jpg",
-	"big_image_url": "http://promosee.com/image.jpg",
-	"min_payment": 500,
-	"redeem_code": "ABCD678",
-	""
+	"vouchers": [
+		{
+			"id": 1,
+			"name": "Voucher Prodia",
+			"subject": "Voucher Prodia 50.000",
+			"description": "Dapatkan voucher prodia senilai 50000",
+			"price": 1000,
+			"id_tenant": 32,
+			"id_voucher": 1,
+			"start_date": 2017-02-02,
+			"end_date": 2017-04-04,
+			"voucher_image_url": "http://promosee.com/image.jpg",
+			"slide_image_url": "http://promosee.com/image.jpg",
+			"big_image_url": "http://promosee.com/image.jpg",
+			"min_payment": 500,
+			"redeem_code": "ABCD678",
+		},
+		{
+			"id": 2,
+			"name": "Voucher JunNJan",
+			"subject": "Voucher JunJJan 50.000",
+			"description": "Dapatkan voucher JunNjan senilai 50000",
+			"price": 1500,
+			"id_tenant": 13,
+			"id_voucher": 2,
+			"start_date": 2017-02-02,
+			"end_date": 2017-04-04,
+			"voucher_image_url": "http://promosee.com/image.jpg",
+			"slide_image_url": "http://promosee.com/image.jpg",
+			"big_image_url": "http://promosee.com/image.jpg",
+			"min_payment": 500,
+			"redeem_code": "ABCD678",
+		},
+	]
+}
+```
+
+### Category List API
+
+End point: `/api/categories/list`
+Method: `GET`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user     | user id |
+
+Response:
+```json
+{
+	"categories": [
+		{
+			"id": 1,
+			"name": "Food",
+			"image_url": "http://promosee.com/image.jpg",
+			"tenants": [	
+				{
+					"id": 1,
+					"code": "JNJ100",
+					"name": "JunNJan",
+					"type": "online",
+					"phone": "021456789",
+					"address": "Jalan Cikutra Bandung", 
+					"email": "junnjan@mail.com",
+					"logo_url": "http://promosee.com/image.jpg",
+					"banner_url": "http://promosee.com/image.jpg",
+					"locations": [
+						{
+							"latitude": -6.144562,
+							"longitude": 106.7657,
+						},
+						{
+							"latitude": -6.23334,
+							"longitude": 105.12998,
+						}
+					]
+				},
+				{
+					"id": 2,
+					"code": "PRD100",
+					"name": "Prodia",
+					"type": "offline",
+					"phone": "021456789",
+					"address": "Jalan Musi Jakarta",
+					"email": "prodia@mail.com",
+					"logo_url": "http://promosee.com/image.jpg",
+					"banner_url": "http://promosee.com/image.jpg",
+					"locations": [
+						{
+							"latitude": -6.144562,
+							"longitude": 106.7657,
+						},
+						{
+							"latitude": -6.23334,
+							"longitude": 105.12998,
+						}
+					]
+				},
+			]
+
+		}
+	]
 }
 ```
 
@@ -350,6 +454,8 @@ Response:
 			"id": 1,
 			"nomor": "1234567ABCDE",
 			"amount": 50000,
+			"id_bank": 1,
+			"metode": "atm",
 			"type": "deposit",
 			"status": "pending",
 			"remark": "test",
@@ -360,6 +466,8 @@ Response:
 			"id": 2,
 			"nomor": "789789FGHUJK",
 			"amount": 20000,
+			"id_bank": 1,
+			"metode": "atm",
 			"type": "withdraw",
 			"status": "approve",
 			"remark": "test",
@@ -484,5 +592,37 @@ Response:
 	"total_stamp": 10,
 	"start_date": "2017-02-02",
 	"end_date": "2017-10-02",
+}
+```
+
+### Top Up Confirmation API
+
+End point: `/api/topups/confirmation`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| metode     | metode pengiriman (tunai / atm / e-banking) |
+| id_bank     | bank id |
+| jumlah     | jumlah yang ditaransfer |
+| nama     | nama pemegang rekening |
+| no_rekening     | no rekening pengirim |
+
+Response:
+```json
+{
+	"id": 1,
+	"nomor": "1234567ABCDE",
+	"amount": 50000,
+	"id_bank": 1,
+	"metode": "atm",
+	"type": "deposit",
+	"status": "pending",
+	"remark": "test",
+	"balance": 10000,
+	"date" : "2016-12-15 07:30:00",
 }
 ```
