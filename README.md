@@ -5,6 +5,7 @@
 - tambahkan id_voucher di tabel banner
 - tambahkan order_id di tabel kategori
 - tambahkan order_id di tabel tenant
+- buat tabel subscribe dengan field (id, id_user, start_date, lama_hari)
 - buat tabel bank dengan field (id, nama_bank, norek, nama_rekening, logo_url)
 - tambahkan field metode, id_bank_promosee, nama_pengirim, no_rekening_pengirim di tabel pro_dpwd_trans
 - tambahkan field no_ktp di tabel pro_member_card
@@ -690,5 +691,32 @@ Response
 	"address": "jalan monas",
 	"image_url": "http://promosee.com/image.jpg",
 	"balance": 65000,
+}
+```
+
+
+
+### Subscribe API
+
+End point: `/api/subscribe/add`
+Method: `POST`
+
+Request parameters:
+
+| Parameter | Description |
+| --------- | ----------- |
+| token     | Auth TOKEN |
+| id_user      | id user  |
+| days      | lama hari  |
+
+API ini dibuat untuk subscribe promosee, dan data yang dikirimkan akan disimpan di tabel subscribe yang baru dibuat.
+Response mengembalikan satu JSON subscribe yang telah dibuat.
+
+Response
+```json
+{
+	"id": 1,
+	"start_date": 2017-02-04,
+	"days": 14,
 }
 ```
