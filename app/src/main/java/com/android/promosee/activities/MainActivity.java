@@ -10,12 +10,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -40,6 +42,7 @@ import com.android.promosee.activities.vouchers.FreeVoucherActivity;
 import com.android.promosee.activities.vouchers.MyVoucherIndexActivity;
 import com.android.promosee.activities.vouchers.VoucherCategoryActivity;
 import com.android.promosee.activities.wallets.WalletHistoryActivity;
+import com.android.promosee.core.API;
 import com.android.promosee.core.Preferences;
 import com.android.promosee.core.SlideBannerAdapter;
 import com.android.promosee.core.Utils;
@@ -49,15 +52,21 @@ import com.android.promosee.models.Category;
 import com.android.promosee.models.Tenant;
 import com.android.promosee.models.Voucher;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
+import cz.msebera.android.httpclient.Header;
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -80,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.background_dimmer) View backgroundDimmer;
     @BindView(R.id.voucher_recyclerview) RecyclerView voucherRecyclerView;
     @BindView(R.id.subscribe_layout) LinearLayout subscribeLayout;
+    @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
 
     private Preferences preferences;
     private Activity activity;
@@ -212,6 +222,36 @@ public class MainActivity extends AppCompatActivity {
                     fab.setVisibility(View.VISIBLE);
                     setupBaseVoucherRecyclerView();
                 }
+            }
+        });
+
+        int redColorID = ContextCompat.getColor(this, R.color.LightRed);
+        swipeRefreshLayout.setColorSchemeColors(redColorID, redColorID, redColorID);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                API.get(API.BASE_URL + "vouchers/list", API.getBaseParams(activity), new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                        try {
+                            Voucher.fromJSONArray(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        setupBaseVoucherRecyclerView();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable,
+                                          JSONObject errorResponse) {
+                        API.handleFailure(activity, statusCode, errorResponse);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
         });
 

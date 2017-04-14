@@ -1,5 +1,7 @@
 package com.android.promosee.models;
 
+import android.util.Log;
+
 import com.android.promosee.core.API;
 import com.android.promosee.core.DateUtils;
 import com.android.promosee.core.ParseJSON;
@@ -129,8 +131,14 @@ public class Voucher extends RealmObject {
     }
 
     public static Voucher fromJSON(JSONObject response, Realm realm) throws JSONException {
-        Voucher voucher = new Voucher();
-        voucher.setId(ParseJSON.getInt(response.getString("id")));
+        // update not working (special case)
+        int id = ParseJSON.getInt(response.getString("id"));
+        Voucher voucher = realm.where(Voucher.class).equalTo("id", id).findFirst();
+        if (voucher == null) {
+            voucher = new Voucher();
+            voucher.setId(id);
+        }
+
         voucher.setName(response.optString("name"));
         voucher.setSubject(response.optString("subject"));
         voucher.setDescription(response.optString("description"));

@@ -6,174 +6,181 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <RelativeLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-        <LinearLayout
-            android:id="@+id/search_layout"
-            android:layout_below="@+id/toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/DarkBlack"
-            android:orientation="horizontal"
-            android:padding="5sp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:drawable/ic_menu_search"
-                android:contentDescription="@string/search" />
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="@string/search_voucher"
-                android:textColor="@color/White" />
-
-            <EditText
-                android:padding="5sp"
-                android:id="@+id/search_edittext"
-                android:textSize="15sp"
+            <LinearLayout
+                android:id="@+id/search_layout"
+                android:layout_below="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/White"
-                android:inputType="text|textAutoCorrect" />
+                android:background="@color/DarkBlack"
+                android:orientation="horizontal"
+                android:padding="5sp">
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:drawable/ic_menu_search"
+                    android:contentDescription="@string/search" />
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_below="@+id/search_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="@string/search_voucher"
+                    android:textColor="@color/White" />
 
-            <FrameLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/coordinatorLayout"
+                <EditText
+                    android:padding="5sp"
+                    android:id="@+id/search_edittext"
+                    android:textSize="15sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/White"
+                    android:inputType="text|textAutoCorrect" />
+
+            </LinearLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_below="@+id/search_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <FrameLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/coordinatorLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
-                        android:id="@+id/view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="150sp" />
-
                     <LinearLayout
-                        android:id="@+id/subscribe_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:background="@color/DarkRed"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="150sp" />
 
                         <LinearLayout
-                            android:orientation="horizontal"
+                            android:id="@+id/subscribe_layout"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:gravity="center">
+                            android:layout_height="55dp"
+                            android:background="@color/DarkRed"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10sp"
-                                android:layout_gravity="left|center_vertical|end"
-                                android:background="@drawable/voucher_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:textAllCaps="true"
-                                android:text="@string/subscribe"
-                                android:textColor="@color/White"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="3dp"
-                                android:gravity="center"
-                                android:textAllCaps="true"
-                                android:text="@string/app_name"
-                                android:textColor="@color/White"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="3dp"
-                                android:gravity="center"
-                                android:textAllCaps="true"
-                                android:text="@string/vouchers"
-                                android:textColor="@color/White"
-                                android:textSize="12dp" />
-
-                            <ImageView
-                                android:layout_marginLeft="15sp"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_alignParentRight="true"
-                                android:layout_gravity="right"
-                                android:background="@drawable/ic_keyboard_arrow_right_24dp" />
+                                android:layout_gravity="center"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="10sp"
+                                    android:layout_gravity="left|center_vertical|end"
+                                    android:background="@drawable/voucher_icon" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:textAllCaps="true"
+                                    android:text="@string/subscribe"
+                                    android:textColor="@color/White"
+                                    android:textSize="12dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="3dp"
+                                    android:gravity="center"
+                                    android:textAllCaps="true"
+                                    android:text="@string/app_name"
+                                    android:textColor="@color/White"
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="3dp"
+                                    android:gravity="center"
+                                    android:textAllCaps="true"
+                                    android:text="@string/vouchers"
+                                    android:textColor="@color/White"
+                                    android:textSize="12dp" />
+
+                                <ImageView
+                                    android:layout_marginLeft="15sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_gravity="right"
+                                    android:background="@drawable/ic_keyboard_arrow_right_24dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/voucher_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
                     </LinearLayout>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/voucher_recyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    
-                </LinearLayout>
+                </FrameLayout>
 
-            </FrameLayout>
+            </android.support.v4.widget.NestedScrollView>
 
-        </android.support.v4.widget.NestedScrollView>
+            <View
+                android:id="@+id/background_dimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/DarkBlack"
+                android:alpha="0.9"
+                android:visibility="gone" />
 
-        <View
-            android:id="@+id/background_dimmer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/DarkBlack"
-            android:alpha="0.9"
-            android:visibility="gone" />
+            <ImageView
+                android:id="@+id/fab"
+                android:layout_width="90sp"
+                android:layout_height="90sp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/pin_map" />
 
-        <ImageView
-            android:id="@+id/fab"
-            android:layout_width="90sp"
-            android:layout_height="90sp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/pin_map" />
+            <include layout="@layout/fab_layout" />
 
-        <include layout="@layout/fab_layout" />
+        </RelativeLayout>
 
-    </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_left"
