@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="58sp"
+    android:layout_height="58sp"
+    android:background="@color/White">
+
+    <RelativeLayout
+        android:background="@color/LightGray"
+        android:layout_margin="2sp"
+        android:layout_width="54sp"
+        android:layout_height="54sp">
+
+        <ImageView
+            android:src="@mipmap/app_icon"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/stamps_icon"
+            android:layout_width="40sp"
+            android:layout_height="40sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

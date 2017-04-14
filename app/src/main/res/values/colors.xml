@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="Gray">#a2a2a2</color>
+    <color name="White">#ffffff</color>
+    <color name="Black">#313131</color>
+    <color name="DarkBlack">#000000</color>
+    <color name="Orange">#ff9600</color>
+    <color name="Brown">#875a19</color>
+    <color name="Green">#64c300</color>
+    <color name="Yellow">#f4fd00</color>
+
+    <color name="LightRed">#ed1c24</color>
+    <color name="DarkRed">#981200</color>
+
+    <!--<color name="LightGray">#e0e0e0</color>-->
+    <color name="LightGray">#eceaea</color>
+    <color name="DarkGray">#a2a2a2</color>
+
+    <color name="LightBlue">#2e9dea</color>
+    <color name="DarkBlue">#195279</color>
+    <color name="FacebookColor">#3b5998</color>
+
+    <color name="colorFAB">#2196F3</color>
+</resources>

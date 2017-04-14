@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@color/DarkRed"
+        android:minHeight="20dp" >
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_marginLeft="10sp"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:scaleX="-1"
+            android:scaleType="fitStart"
+            android:src="@drawable/bg_back_button" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/photo"
+            android:layout_centerVertical="true"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10sp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:alpha="0.4"
+                android:text="PROMO"
+                android:textColor="@color/White"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="SEE"
+                android:textColor="@color/White"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:background="@color/LightGray"
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="5sp"
+        android:textAllCaps="true"
+        android:text="@string/add_member_cards"
+        android:textColor="@color/DarkRed"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="180sp"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_marginTop="40sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/code_edittext"
+                    android:textColorHint="@color/LightRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_box_shadow"
+                    android:textSize="12sp"
+                    android:inputType="number"
+                    android:fontFamily="ubuntu-light"
+                    android:hint="Nomor membercard"
+                    android:paddingLeft="10dp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:layout_marginTop="20sp"
+                    android:id="@+id/ktp_edittext"
+                    android:textColorHint="@color/LightRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_box_shadow"
+                    android:textSize="12sp"
+                    android:inputType="number"
+                    android:fontFamily="ubuntu-light"
+                    android:hint="Nomor KTP"
+                    android:paddingLeft="10dp"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/submit_button"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SUBMIT"
+                    android:textColor="@color/White"
+                    android:background="@color/DarkRed"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

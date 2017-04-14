@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "952252621767",
+    "firebase_url": "https://promosee-8d9d7.firebaseio.com",
+    "project_id": "promosee-8d9d7",
+    "storage_bucket": "promosee-8d9d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952252621767:android:e096033d80af1d6c",
+        "android_client_info": {
+          "package_name": "com.android.promosee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952252621767-bs6t1tuhmp8f7q07dppah97airdq6ujf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": " AIzaSyC9aZBlY5KezpabWnDFRrkQNNhXad3jGyo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

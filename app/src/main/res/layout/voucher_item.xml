@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/LightGray"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="5sp"
+        android:layout_margin="3sp"
+        android:background="@color/White"
+        android:layout_width="115sp"
+        android:layout_height="165sp">
+
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:id="@+id/price_text"
+            android:gravity="right"
+            android:textAllCaps="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Green"
+            android:textSize="10sp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="5sp"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Black"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:id="@+id/tenant_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Gray"
+                android:textSize="8sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LightGray"
+    android:orientation="vertical">
+
+    <include
+        android:id="@id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/LightGray"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="5sp"
+        android:textAllCaps="true"
+        android:text="@string/payment_history"
+        android:textColor="@color/DarkRed"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@color/White"
+            android:id="@+id/summary_layout"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:padding="5sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginLeft="5sp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/wallet"
+                            android:layout_width="25sp"
+                            android:layout_height="25sp" />
+
+                        <TextView
+                            android:maxLines="1"
+                            android:text="SEE Wallet Balance"
+                            android:textColor="@color/Black"
+                            android:layout_gravity="center"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/balance_text"
+                        android:layout_weight="1"
+                        android:text="32 Voucher"
+                        android:textColor="@color/Black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:background="@drawable/bg_box_shadow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5sp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginLeft="5sp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/vouchers"
+                            android:layout_width="25sp"
+                            android:layout_height="25sp" />
+
+                        <TextView
+                            android:maxLines="1"
+                            android:text="Total Vouchers"
+                            android:textSize="12sp"
+                            android:textColor="@color/Black"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/total_voucher_text"
+                        android:layout_weight="1"
+                        android:text="32 Voucher"
+                        android:textColor="@color/Black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:background="@drawable/bg_box_shadow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5sp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_marginLeft="5sp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/history"
+                            android:layout_width="25sp"
+                            android:layout_height="25sp" />
+
+                        <TextView
+                            android:maxLines="1"
+                            android:text="Total Redeem Vouchers"
+                            android:textColor="@color/Black"
+                            android:textSize="12sp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/total_redeem_text"
+                        android:layout_weight="1"
+                        android:text="32 Voucher"
+                        android:textColor="@color/Black"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_box_shadow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/topup_confirmation_button"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/topup_confirmation"
+                android:textColor="@color/White"
+                android:background="@color/DarkRed"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/header_layout"
+            android:background="@color/White"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Details"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="5sp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="@color/DarkGray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="Status"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="5sp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="@color/DarkGray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/White"
+            android:layout_above="@id/summary_layout"
+            android:layout_below="@id/header_layout"
+            android:layout_marginBottom="10sp"
+            android:id="@+id/payment_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

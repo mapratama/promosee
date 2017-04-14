@@ -1,0 +1,309 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_below="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/DarkBlack"
+            android:orientation="horizontal"
+            android:padding="5sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:drawable/ic_menu_search"
+                android:contentDescription="@string/search" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/search_voucher"
+                android:textColor="@color/White" />
+
+            <EditText
+                android:padding="5sp"
+                android:id="@+id/search_edittext"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/White"
+                android:inputType="text|textAutoCorrect" />
+
+        </LinearLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_below="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/coordinatorLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="150sp" />
+
+                    <LinearLayout
+                        android:id="@+id/subscribe_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:background="@color/DarkRed"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10sp"
+                                android:layout_gravity="left|center_vertical|end"
+                                android:background="@drawable/voucher_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textAllCaps="true"
+                                android:text="@string/subscribe"
+                                android:textColor="@color/White"
+                                android:textSize="12dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:gravity="center"
+                                android:textAllCaps="true"
+                                android:text="@string/app_name"
+                                android:textColor="@color/White"
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:gravity="center"
+                                android:textAllCaps="true"
+                                android:text="@string/vouchers"
+                                android:textColor="@color/White"
+                                android:textSize="12dp" />
+
+                            <ImageView
+                                android:layout_marginLeft="15sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_gravity="right"
+                                android:background="@drawable/ic_keyboard_arrow_right_24dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/voucher_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <View
+            android:id="@+id/background_dimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/DarkBlack"
+            android:alpha="0.9"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/fab"
+            android:layout_width="90sp"
+            android:layout_height="90sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/pin_map" />
+
+        <include layout="@layout/fab_layout" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/left_side" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center|bottom"
+            android:gravity="center"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/facebook_icon"
+                    android:src="@drawable/facebook_icon"
+                    android:layout_width="36sp"
+                    android:layout_height="36sp" />
+
+                <ImageView
+                    android:layout_marginLeft="10sp"
+                    android:id="@+id/twitter_icon"
+                    android:src="@drawable/twitter_icon"
+                    android:layout_width="36sp"
+                    android:layout_height="36sp" />
+
+                <ImageView
+                    android:layout_marginLeft="10sp"
+                    android:id="@+id/instagram_icon"
+                    android:src="@drawable/instagram_icon"
+                    android:layout_width="36sp"
+                    android:layout_height="36sp" />
+
+                <ImageView
+                    android:layout_marginLeft="10sp"
+                    android:id="@+id/youtube_icon"
+                    android:src="@drawable/youtube_icon"
+                    android:layout_width="36sp"
+                    android:layout_height="36sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        app:headerLayout="@layout/header_profile"
+        app:menu="@menu/right_side">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center|bottom"
+            android:background="@color/DarkRed"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:text="@string/term_condition"
+                        android:layout_gravity="left"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@color/DarkBlack"
+                        android:textColor="@color/White"
+                        android:layout_marginRight="0.5dp"/>
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:text="@string/policy"
+                        android:layout_weight="1"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:layout_marginLeft="0.5dp"
+                        android:background="@color/DarkBlack"
+                        android:textColor="@color/White" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/logout"
+                    android:textColor="@color/White" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>
+

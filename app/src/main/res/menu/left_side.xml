@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/vouchers"
+            android:checked="false"
+            android:icon="@drawable/rounded_textview"
+            android:title="@string/category_vouchers" />
+
+        <item
+            android:id="@+id/partner_promosee"
+            android:checked="false"
+            android:icon="@drawable/rounded_textview"
+            android:title="@string/partner_promosee" />
+
+        <item
+            android:id="@+id/news_and_event"
+            android:checked="false"
+            android:icon="@drawable/rounded_textview"
+            android:title="@string/news_and_events" />
+
+        <item
+            android:id="@+id/faqs"
+            android:checked="false"
+            android:icon="@drawable/rounded_textview"
+            android:title="@string/faqs" />
+
+        <item
+            android:id="@+id/contact_us"
+            android:checked="false"
+            android:icon="@drawable/rounded_textview"
+            android:title="@string/contact_us" />
+
+    </group>
+
+</menu>

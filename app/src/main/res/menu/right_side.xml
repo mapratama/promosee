@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/my_vouchers"
+            android:checked="false"
+            android:icon="@drawable/vouchers"
+            android:title="@string/my_vouchers" />
+
+        <item
+            android:id="@+id/my_membercards"
+            android:checked="false"
+            android:icon="@drawable/membercards"
+            android:title="@string/my_member_cards" />
+
+        <item
+            android:id="@+id/my_promosee_wallet"
+            android:checked="false"
+            android:icon="@drawable/wallet"
+            android:title="@string/my_promosee_walet" />
+
+        <item
+            android:id="@+id/redeem_history"
+            android:checked="false"
+            android:icon="@drawable/history"
+            android:title="@string/redemption_history" />
+
+        <item
+            android:id="@+id/get_free_voucher"
+            android:checked="false"
+            android:icon="@drawable/share_icon"
+            android:title="@string/get_free_voucher" />
+
+    </group>
+
+</menu>

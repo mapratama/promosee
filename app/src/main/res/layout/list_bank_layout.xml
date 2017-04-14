@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350sp"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20sp"
+        android:id="@+id/bank_recyclerview"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/topup_confirmation_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/topup_confirmation"
+        android:textColor="@color/White"
+        android:background="@color/DarkRed"/>
+
+</LinearLayout>

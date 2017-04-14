@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15sp">
+
+    <RelativeLayout
+        android:id="@+id/circle_layout"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/outline_circle_icon"
+            android:layout_width="20sp"
+            android:layout_height="20sp" />
+
+        <ImageView
+            android:id="@+id/circle_icon"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/circle_icon"
+            android:layout_width="15sp"
+            android:layout_height="15sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/category_text"
+        android:layout_marginRight="10sp"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:textColor="@color/Black"
+        android:textSize="16sp"
+        android:layout_toLeftOf="@id/circle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
