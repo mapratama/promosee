@@ -166,14 +166,36 @@
                 android:alpha="0.8"
                 android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/fab"
-                android:layout_width="90sp"
-                android:layout_height="90sp"
-                android:layout_alignParentBottom="true"
+            <RelativeLayout
+                android:id="@+id/fab_layout"
+                android:elevation="10dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/pin_map" />
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/circle"
+                android:layout_width="65dp"
+                android:layout_height="65dp">
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/White"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+
+                    <ImageView
+                        android:id="@+id/fab_icon"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:tint="@color/LightRed"
+                        android:src="@drawable/pin_location_icon" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
             <include layout="@layout/fab_layout" />
 

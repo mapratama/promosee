@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,9 +72,9 @@ import io.realm.Sort;
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.back_button) ImageView backButton;
-    @BindView(R.id.fab) ImageView fab;
     @BindView(R.id.fab_search) ImageView fabSearch;
     @BindView(R.id.fab_voucher) ImageView fabVoucher;
+    @BindView(R.id.fab_icon) ImageView fabIcon;
     @BindView(R.id.search_edittext) EditText searchEditText;
     @BindView(R.id.view_pager) AutoScrollViewPager autoScrollViewPager;
     @BindView(R.id.photo) SimpleDraweeView photo;
@@ -84,6 +85,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.name_text) TextView nameTextView;
     @BindView(R.id.balance_text) TextView balanceTextView;
+    @BindView(R.id.fab_search_text) TextView fabSearchTextView;
+    @BindView(R.id.fab_voucher_text) TextView fabVoucherTextView;
+    @BindView(R.id.fab_layout) RelativeLayout fabLayout;
     @BindView(R.id.photo_profile) SimpleDraweeView photoProfile;
 
     private Preferences preferences;
@@ -122,7 +126,7 @@ public class MainActivity extends BaseActivity {
                 if (isOpen) {
                     autoScrollViewPager.setVisibility(View.GONE);
                     subscribeLayout.setVisibility(View.GONE);
-                    fab.setVisibility(View.GONE);
+                    fabLayout.setVisibility(View.GONE);
 
                     RealmList<Voucher> vouchers = new RealmList<>();
                     RealmResults<Voucher> vouchersResult = realm.where(Voucher.class).findAllSorted("name");
@@ -135,7 +139,7 @@ public class MainActivity extends BaseActivity {
                 else {
                     autoScrollViewPager.setVisibility(View.VISIBLE);
                     subscribeLayout.setVisibility(View.VISIBLE);
-                    fab.setVisibility(View.VISIBLE);
+                    fabLayout.setVisibility(View.VISIBLE);
                     setupBaseVoucherRecyclerView();
                 }
             }
@@ -350,7 +354,7 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(this, SubscribeActivity.class));
     }
 
-    @OnClick(R.id.fab)
+    @OnClick(R.id.fab_layout)
     public void fabOnClick() {
         if (fabIsExpand) hideFabAnimation();
         else expandFabAnimation();
@@ -380,12 +384,14 @@ public class MainActivity extends BaseActivity {
 
     private void expandFabAnimation() {
         backgroundDimmer.setVisibility(View.VISIBLE);
-        fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.x));
+        fabIcon.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cross_icon));
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fabSearch.getLayoutParams();
         layoutParams.bottomMargin = (int) (fabSearch.getHeight() * 3.5);
         fabSearch.setLayoutParams(layoutParams);
         fabSearch.startAnimation(showFabAnimation);
+        fabSearchTextView.startAnimation(showFabAnimation);
+
         fabSearch.setClickable(true);
         fabSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -402,6 +408,8 @@ public class MainActivity extends BaseActivity {
         layoutParams2.bottomMargin = fabVoucher.getHeight() * 5;
         fabVoucher.setLayoutParams(layoutParams2);
         fabVoucher.startAnimation(showFabAnimation);
+        fabVoucherTextView.startAnimation(showFabAnimation);
+
         fabVoucher.setClickable(true);
         fabVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -420,18 +428,20 @@ public class MainActivity extends BaseActivity {
 
     private void hideFabAnimation() {
         backgroundDimmer.setVisibility(View.GONE);
-        fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pin_map));
+        fabIcon.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pin_location_icon));
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) fabSearch.getLayoutParams();
         layoutParams.bottomMargin = (int) (fabSearch.getHeight() * 3.5);
         fabSearch.setLayoutParams(layoutParams);
         fabSearch.startAnimation(hideFabAnimation);
+        fabSearchTextView.startAnimation(hideFabAnimation);
         fabSearch.setClickable(false);
 
         RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) fabVoucher.getLayoutParams();
         layoutParams2.bottomMargin = fabVoucher.getHeight() * 5;
         fabVoucher.setLayoutParams(layoutParams2);
         fabVoucher.startAnimation(hideFabAnimation);
+        fabVoucherTextView.startAnimation(hideFabAnimation);
         fabVoucher.setClickable(false);
 
         backgroundDimmer.startAnimation(fadeOut);

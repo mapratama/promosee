@@ -1,38 +1,52 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/fab_search"
+        android:visibility="invisible"
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/magnifier"
-        android:visibility="invisible" />
+        android:src="@drawable/magnifier" />
 
     <ImageView
         android:id="@+id/fab_voucher"
+        android:visibility="invisible"
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ticket"
-        android:visibility="invisible" />
+        android:src="@drawable/ticket" />
 
     <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="20sp"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/fab_search_text"
+        android:visibility="invisible"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
         android:layout_centerHorizontal="true"
         android:layout_toRightOf="@+id/fab_search"
-        android:text="Angga Pratama"
-        android:textColor="@color/LightRed"
+        android:text="Cari Voucher\nDi Lokasi Sekitarmu"
+        android:textColor="@color/White"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/fab_search" />
+
+    <TextView
+        android:id="@+id/fab_voucher_text"
+        android:visibility="invisible"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/fab_search"
+        android:text="Redeem Voucher\nDi Lokasi Sekitarmu"
+        android:textColor="@color/White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/fab_voucher" />
 
 </RelativeLayout>

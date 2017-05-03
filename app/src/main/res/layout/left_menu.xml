@@ -11,40 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center|bottom"
-        android:gravity="center"
-        android:background="@color/White"
+        android:gravity="center_vertical"
+        android:background="@color/LightRed"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/White"
+                android:text="Visit Us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <ImageView
                 android:id="@+id/facebook_icon"
-                android:src="@drawable/facebook_icon"
+                android:src="@mipmap/facebook_icon"
                 android:layout_width="36sp"
                 android:layout_height="36sp" />
 
             <ImageView
                 android:layout_marginLeft="10sp"
                 android:id="@+id/twitter_icon"
-                android:src="@drawable/twitter_icon"
+                android:src="@mipmap/twitter_icon"
                 android:layout_width="36sp"
                 android:layout_height="36sp" />
 
             <ImageView
                 android:layout_marginLeft="10sp"
                 android:id="@+id/instagram_icon"
-                android:src="@drawable/instagram_icon"
+                android:src="@mipmap/instagram_icon"
                 android:layout_width="36sp"
                 android:layout_height="36sp" />
 
             <ImageView
                 android:layout_marginLeft="10sp"
                 android:id="@+id/youtube_icon"
-                android:src="@drawable/youtube_icon"
+                android:src="@mipmap/youtube_icon"
                 android:layout_width="36sp"
                 android:layout_height="36sp" />
 
