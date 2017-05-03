@@ -19,6 +19,7 @@ import com.android.promosee.activities.BaseActivity;
 import com.android.promosee.activities.RedemptionHistoryActivity;
 import com.android.promosee.core.API;
 import com.android.promosee.core.Preferences;
+import com.android.promosee.core.Session;
 import com.android.promosee.core.Utils;
 import com.android.promosee.dialogs.BankListDialog;
 import com.android.promosee.dialogs.LoadingDialog;
@@ -73,9 +74,10 @@ public class WalletHistoryActivity extends BaseActivity {
 
         API.get(API.BASE_URL + "wallets/created", API.getBaseParams(this), new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    Wallet.fromJSONArray(response);
+                    Wallet.fromJSONArray(response.getJSONArray("wallets"));
+                    Session.saveUserData(activity, response.getJSONObject("user"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

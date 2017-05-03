@@ -6,21 +6,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -32,8 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.promosee.R;
+import com.android.promosee.activities.auth.EditProfileActivity;
 import com.android.promosee.activities.auth.LoginActivity;
-import com.android.promosee.activities.auth.RegisterActivity;
 import com.android.promosee.activities.members.MemberCardsIndexActivity;
 import com.android.promosee.activities.news.NewsIndexActivity;
 import com.android.promosee.activities.partners.PartnerIndexActivity;
@@ -44,20 +39,19 @@ import com.android.promosee.activities.vouchers.VoucherCategoryActivity;
 import com.android.promosee.activities.wallets.WalletHistoryActivity;
 import com.android.promosee.core.API;
 import com.android.promosee.core.Preferences;
+import com.android.promosee.core.Session;
 import com.android.promosee.core.SlideBannerAdapter;
 import com.android.promosee.core.Utils;
-import com.android.promosee.dialogs.RedemptionDialog;
-import com.android.promosee.models.Banner;
 import com.android.promosee.models.Category;
 import com.android.promosee.models.Tenant;
 import com.android.promosee.models.Voucher;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.login.LoginManager;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,7 +68,7 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.back_button) ImageView backButton;
     @BindView(R.id.fab) ImageView fab;
@@ -84,12 +78,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.view_pager) AutoScrollViewPager autoScrollViewPager;
     @BindView(R.id.photo) SimpleDraweeView photo;
     @BindView(R.id.drawer_layout) DrawerLayout drawerLayout;
-    @BindView(R.id.navigation_left) NavigationView navigationLeft;
-    @BindView(R.id.navigation_right) NavigationView navigationRight;
     @BindView(R.id.background_dimmer) View backgroundDimmer;
     @BindView(R.id.voucher_recyclerview) RecyclerView voucherRecyclerView;
     @BindView(R.id.subscribe_layout) LinearLayout subscribeLayout;
     @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.name_text) TextView nameTextView;
+    @BindView(R.id.balance_text) TextView balanceTextView;
+    @BindView(R.id.photo_profile) SimpleDraweeView photoProfile;
 
     private Preferences preferences;
     private Activity activity;
@@ -98,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
     private Realm realm;
     private RealmResults<Category> categories;
     private VoucherAdapter voucherAdapter;
-    private TextView nameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,90 +109,12 @@ public class MainActivity extends AppCompatActivity {
         fadeOut = AnimationUtils.loadAnimation(getApplication(), R.anim.fadeout);
 
         backButton.setImageResource(R.mipmap.menu_icon);
-        setPhotoProfile(photo);
+        Utils.setPhotoProfile(preferences, photo);
 
         SlideBannerAdapter mSlideBannerAdapter = new SlideBannerAdapter(this);
         autoScrollViewPager.setAdapter(mSlideBannerAdapter);
         autoScrollViewPager.startAutoScroll();
         autoScrollViewPager.setInterval(5000);
-
-        navigationLeft.setItemIconTintList(null);
-        navigationLeft.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemID = item.getItemId();
-                if (itemID == R.id.vouchers)
-                    startActivity(new Intent(activity, VoucherCategoryActivity.class));
-                else if (itemID == R.id.partner_promosee)
-                    startActivity(new Intent(activity, PartnerIndexActivity.class));
-                else if (itemID == R.id.news_and_event)
-                    startActivity(new Intent(activity, NewsIndexActivity.class));
-                else if (itemID == R.id.faqs)
-                    startActivity(new Intent(activity, FAQActivity.class));
-                else if (itemID == R.id.contact_us)
-                    startActivity(new Intent(activity, ContactUsActivity.class));
-
-                return false;
-            }
-        });
-
-        navigationRight.setItemIconTintList(null);
-        navigationRight.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemID = item.getItemId();
-                if (itemID == R.id.my_vouchers)
-                    startActivity(new Intent(activity, MyVoucherIndexActivity.class));
-                else if (itemID == R.id.my_membercards)
-                    startActivity(new Intent(activity, MemberCardsIndexActivity.class));
-                else if (itemID == R.id.my_promosee_wallet)
-                    startActivity(new Intent(activity, WalletHistoryActivity.class));
-                else if (itemID == R.id.redeem_history)
-                    startActivity(new Intent(activity, RedemptionHistoryActivity.class));
-                else if (itemID == R.id.get_free_voucher)
-                    startActivity(new Intent(activity, FreeVoucherActivity.class));
-
-                return false;
-            }
-        });
-
-
-        View headerView = navigationRight.getHeaderView(0);
-        SimpleDraweeView photoProfile = (SimpleDraweeView) headerView.findViewById(R.id.photo_profile);
-        nameTextView = (TextView) headerView.findViewById(R.id.name_text);
-        TextView balanceTextView = (TextView) headerView.findViewById(R.id.balance_text);
-        TextView editProfileTextView = (TextView) headerView.findViewById(R.id.edit_profile);
-
-        setPhotoProfile(photoProfile);
-        nameTextView.setText(preferences.getString("name"));
-        balanceTextView.setText("Rp. " + Utils.addThousandSeparator(preferences.getLong("balance")));
-
-        editProfileTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, RegisterActivity.class);
-                intent.putExtra("action", RegisterActivity.EDIT);
-                startActivityForResult(intent, 1);
-            }
-        });
-
-        nameTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, RegisterActivity.class);
-                intent.putExtra("action", RegisterActivity.VIEW);
-                startActivity(intent);
-            }
-        });
-
-        photoProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, RegisterActivity.class);
-                intent.putExtra("action", RegisterActivity.VIEW);
-                startActivity(intent);
-            }
-        });
 
         KeyboardVisibilityEvent.setEventListener(this, new KeyboardVisibilityEventListener() {
             @Override
@@ -232,9 +148,10 @@ public class MainActivity extends AppCompatActivity {
             public void onRefresh() {
                 API.get(API.BASE_URL + "vouchers/list", API.getBaseParams(activity), new JsonHttpResponseHandler() {
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         try {
-                            Voucher.fromJSONArray(response);
+                            Voucher.fromJSONArray(response.getJSONArray("vouchers"));
+                            Session.saveUserData(activity, response.getJSONObject("user"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -256,17 +173,138 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setupBaseVoucherRecyclerView();
+
+
+        Utils.setPhotoProfile(preferences, photoProfile);
+        nameTextView.setText(preferences.getString("name"));
+        balanceTextView.setText("Rp. " + Utils.addThousandSeparator(preferences.getLong("balance")));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) nameTextView.setText(preferences.getString("name"));
+
+    @OnClick(R.id.category_button)
+    public void categoryButtonOnClick() {
+        startActivity(new Intent(activity, VoucherCategoryActivity.class));
     }
 
-    @OnClick(R.id.back_button)
-    public void backButtonOnClick() {
-        drawerLayout.openDrawer(Gravity.LEFT);
+    @OnClick(R.id.home_button)
+    public void homeButtonOnClick() {
+        startActivity(new Intent(activity, MainActivity.class));
+    }
+
+    @OnClick(R.id.partner_button)
+    public void partnerButtonOnClick() {
+        startActivity(new Intent(activity, PartnerIndexActivity.class));
+    }
+
+    @OnClick(R.id.news_button)
+    public void newsButtonOnClick() {
+        startActivity(new Intent(activity, NewsIndexActivity.class));
+    }
+
+    @OnClick(R.id.faq_button)
+    public void faqButtonOnClick() {
+        startActivity(new Intent(activity, FAQActivity.class));
+    }
+
+    @OnClick(R.id.contact_button)
+    public void contactButtonOnClick() {
+        startActivity(new Intent(activity, ContactUsActivity.class));
+    }
+
+    @OnClick(R.id.my_vouchers_button)
+    public void myVouchersButtonOnClick() {
+        startActivity(new Intent(activity, MyVoucherIndexActivity.class));
+    }
+
+    @OnClick(R.id.my_membercards_button)
+    public void myMembercardsButtonOnClick() {
+        startActivity(new Intent(activity, MemberCardsIndexActivity.class));
+    }
+
+    @OnClick(R.id.my_wallets_button)
+    public void myWalletsButtonOnClick() {
+        startActivity(new Intent(activity, WalletHistoryActivity.class));
+    }
+
+    @OnClick(R.id.my_redemptions_button)
+    public void myRedemptionsButtonOnClick() {
+        startActivity(new Intent(activity, RedemptionHistoryActivity.class));
+    }
+
+    @OnClick(R.id.share_button)
+    public void shareButtonOnClick() {
+        startActivity(new Intent(activity, FreeVoucherActivity.class));
+    }
+
+    @OnClick(R.id.edit_profile)
+    public void editProfileLayoutOnClick() {
+        Intent intent = new Intent(activity, EditProfileActivity.class);
+        intent.putExtra("action", EditProfileActivity.EDIT);
+        startActivityForResult(intent, 1);
+    }
+
+    @OnClick(R.id.name_text)
+    public void nameTextOnClick() {
+        Intent intent = new Intent(activity, EditProfileActivity.class);
+        intent.putExtra("action", EditProfileActivity.VIEW);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.photo_profile)
+    public void photoProfileOnClick() {
+        nameTextOnClick();
+    }
+
+    @OnClick(R.id.instagram_icon)
+    public void instagramIconOnClick() {
+        String instagramProfile = getResources().getString(R.string.instagram_profile);
+        try {
+            getPackageManager().getPackageInfo("com.instagram.android", 0);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/"
+                    + instagramProfile));
+            intent.setPackage("com.instagram.android");
+            startActivity(intent);
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            Utils.openWebView(activity, "https://instagram.com/" + instagramProfile);
+        }
+    }
+
+    @OnClick(R.id.twitter_icon)
+    public void twitterIconOnClick() {
+        String twitterProfile = getResources().getString(R.string.twitter_profile);
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name="
+                    + twitterProfile)));
+        } catch (Exception e) {
+            Utils.openWebView(activity, "https://twitter.com/" + twitterProfile);
+        }
+    }
+
+    @OnClick(R.id.youtube_icon)
+    public void youtubeIconOnClick() {
+        String youtubeID = getResources().getString(R.string.youtube_id);
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + youtubeID)));
+        } catch (ActivityNotFoundException ex) {
+            Utils.openWebView(activity, "http://www.youtube.com/watch?v=" + youtubeID);
+        }
+    }
+
+    @OnClick(R.id.facebook_icon)
+    public void facebookIconOnClick() {
+        String facebookUrl = getResources().getString(R.string.facebook_url);
+        final int newVersionCodeFacebook = 3002850;
+
+        try {
+            int versionCode = getPackageManager().getPackageInfo("com.facebook.katana", 0).versionCode;
+            facebookUrl = (versionCode >= newVersionCodeFacebook) ? "fb://facewebmodal/f?href=" + facebookUrl :
+                    "fb://facewebmodal/f?href=" + facebookUrl ;
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl)));
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            Utils.openWebView(activity, facebookUrl);
+        }
     }
 
     @OnClick(R.id.logout_button)
@@ -276,6 +314,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 preferences.clear();
+                LoginManager.getInstance().logOut();
 
                 Realm realm = Realm.getDefaultInstance();
                 realm.beginTransaction();
@@ -288,6 +327,17 @@ public class MainActivity extends AppCompatActivity {
         });
         alertDialog.setNegativeButton("Tidak", null);
         alertDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) nameTextView.setText(preferences.getString("name"));
+    }
+
+    @OnClick(R.id.back_button)
+    public void backButtonOnClick() {
+        drawerLayout.openDrawer(Gravity.LEFT);
     }
 
     @OnClick(R.id.photo)
@@ -322,75 +372,10 @@ public class MainActivity extends AppCompatActivity {
         voucherAdapter.notifyDataSetChanged();
     }
 
-
-    @OnClick(R.id.instagram_icon)
-    public void instagramIconOnClick() {
-        String instagramProfile = getResources().getString(R.string.instagram_profile);
-        try {
-            getPackageManager().getPackageInfo("com.instagram.android", 0);
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/"
-                    + instagramProfile));
-            intent.setPackage("com.instagram.android");
-            startActivity(intent);
-        }
-        catch (PackageManager.NameNotFoundException e) {
-            openWebView("https://instagram.com/" + instagramProfile);
-        }
-    }
-
-    @OnClick(R.id.twitter_icon)
-    public void twitterIconOnClick() {
-        String twitterProfile = getResources().getString(R.string.twitter_profile);
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name="
-                    + twitterProfile)));
-        } catch (Exception e) {
-            openWebView("https://twitter.com/" + twitterProfile);
-        }
-    }
-
-    @OnClick(R.id.youtube_icon)
-    public void youtubeIconOnClick() {
-        String youtubeID = getResources().getString(R.string.youtube_id);
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + youtubeID)));
-        } catch (ActivityNotFoundException ex) {
-            openWebView("http://www.youtube.com/watch?v=" + youtubeID);
-        }
-    }
-
-    @OnClick(R.id.facebook_icon)
-    public void facebookIconOnClick() {
-        String facebookUrl = getResources().getString(R.string.facebook_url);
-        final int newVersionCodeFacebook = 3002850;
-
-        try {
-            int versionCode = getPackageManager().getPackageInfo("com.facebook.katana", 0).versionCode;
-            facebookUrl = (versionCode >= newVersionCodeFacebook) ? "fb://facewebmodal/f?href=" + facebookUrl :
-                    "fb://facewebmodal/f?href=" + facebookUrl ;
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl)));
-        }
-        catch (PackageManager.NameNotFoundException e) {
-            openWebView(facebookUrl);
-        }
-    }
-
     private void setupBaseVoucherRecyclerView() {
         categories = realm.where(Category.class).findAllSorted("orderID");
         voucherRecyclerView.setAdapter(new VoucherGridAdapter());
         voucherRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    private void setPhotoProfile(SimpleDraweeView simpleDraweeView) {
-        simpleDraweeView.setImageURI(Uri.parse(preferences.getString("imageUrl")));
-        simpleDraweeView.getHierarchy().setRoundingParams(
-                Utils.setCircleImage(simpleDraweeView));
-    }
-
-    private void openWebView(String url) {
-        Intent intent = new Intent(this, WebViewActivity.class);
-        intent.putExtra("url", url);
-        startActivity(intent);
     }
 
     private void expandFabAnimation() {

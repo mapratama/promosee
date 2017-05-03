@@ -102,8 +102,12 @@ public class MemberCardsIndexActivity extends BaseActivity {
         public void onBindViewHolder(GridViewHolder holder, final int position) {
             Membercard membercard = membercards.get(position);
 
+            holder.membercard = membercard;
             holder.photo.setImageURI(Uri.parse(membercard.getTenant().getLogoUrl()));
-            holder.membercardID = membercard.getId();
+
+            String nomorMembercard = membercard.getNomor();
+            if (nomorMembercard.equals("0")) holder.requestLayout.setVisibility(View.VISIBLE);
+            else holder.requestLayout.setVisibility(View.GONE);
         }
 
         @Override
@@ -119,8 +123,9 @@ public class MemberCardsIndexActivity extends BaseActivity {
         class GridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
             @BindView(R.id.photo) SimpleDraweeView photo;
+            @BindView(R.id.request_layout) LinearLayout requestLayout;
 
-            private int membercardID;
+            private Membercard membercard;
 
             public GridViewHolder(View view) {
                 super(view);
@@ -130,8 +135,10 @@ public class MemberCardsIndexActivity extends BaseActivity {
 
             @Override
             public void onClick(View view) {
+                if (membercard.getNomor().equals("0")) return;
+
                 Intent intent = new Intent(view.getContext(), MemberCardDetailsActivity.class);
-                intent.putExtra("membercardID", membercardID);
+                intent.putExtra("membercardID", membercard.getId());
                 startActivity(intent);
             }
         }

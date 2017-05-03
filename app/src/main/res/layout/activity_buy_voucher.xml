@@ -227,7 +227,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="8dp"
                             android:gravity="center"
-                            android:text="31 Oktober 2016"
+                            android:text="-"
                             android:textColor="@color/White" />
 
                     </LinearLayout>
@@ -270,7 +270,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="8dp"
                             android:gravity="center"
-                            android:text="Rp 100.000,-"
+                            android:text="FREE"
                             android:textColor="@color/White" />
 
                     </LinearLayout>
@@ -431,8 +431,11 @@
                             <LinearLayout
                                 android:id="@+id/topup_layout"
                                 android:layout_marginTop="5sp"
-                                android:padding="3sp"
-                                android:background="@color/LightRed"
+                                android:paddingTop="3sp"
+                                android:paddingBottom="3sp"
+                                android:paddingLeft="8sp"
+                                android:paddingRight="8sp"
+                                android:background="@drawable/oval_red"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 

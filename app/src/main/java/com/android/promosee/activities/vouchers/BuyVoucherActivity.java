@@ -260,7 +260,7 @@ public class BuyVoucherActivity extends LocationBaseActivity {
             }
         }
 
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 150));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 190));
 
         locationRecyclerView.setAdapter(new LocationAdapter());
         locationRecyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -111,20 +111,6 @@
                     android:paddingLeft="10dp"
                     android:textStyle="italic" />
 
-                <EditText
-                    android:layout_marginTop="20sp"
-                    android:id="@+id/ktp_edittext"
-                    android:textColorHint="@color/LightRed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_box_shadow"
-                    android:textSize="12sp"
-                    android:inputType="number"
-                    android:fontFamily="ubuntu-light"
-                    android:hint="Nomor KTP"
-                    android:paddingLeft="10dp"
-                    android:textStyle="italic" />
-
                 <Button
                     android:id="@+id/submit_button"
                     android:layout_marginTop="30dp"

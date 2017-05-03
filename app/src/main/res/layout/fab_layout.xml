@@ -23,4 +23,16 @@
         android:src="@drawable/ticket"
         android:visibility="invisible" />
 
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/fab_search"
+        android:text="Angga Pratama"
+        android:textColor="@color/LightRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

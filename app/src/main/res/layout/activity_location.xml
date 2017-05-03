@@ -1,71 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightGray"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
-    <include
-        android:id="@id/toolbar"
-        layout="@layout/toolbar" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_margin="5sp"
-        android:textAllCaps="true"
-        android:text="@string/search_voucher"
-        android:textColor="@color/DarkRed"
-        android:textSize="14dp"
-        android:textStyle="bold" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/LightGray"
+        android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <include
+            android:id="@id/toolbar"
+            layout="@layout/toolbar" />
 
-        <ImageView
-            android:id="@+id/current_location_icon"
-            android:layout_margin="20sp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/current_location_icon"
-            android:layout_width="40sp"
-            android:layout_height="40sp" />
-
-        <LinearLayout
-            android:id="@+id/filter_layout"
-            android:layout_alignParentBottom="true"
-            android:background="@color/LightGray"
-            android:padding="10sp"
-            android:layout_margin="20sp"
-            android:orientation="horizontal"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="5sp"
+            android:textAllCaps="true"
+            android:text="@string/search_voucher"
+            android:textColor="@color/DarkRed"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <ImageView
-                android:src="@drawable/filter"
-                android:layout_width="20sp"
-                android:layout_height="20sp" />
+                android:id="@+id/current_location_icon"
+                android:layout_margin="20sp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/current_location_icon"
+                android:layout_width="40sp"
+                android:layout_height="40sp" />
 
-            <TextView
-                android:text="Filter"
-                android:textSize="16sp"
-                android:textColor="@color/Black"
-                android:layout_marginLeft="10sp"
+            <LinearLayout
+                android:id="@+id/filter_layout"
+                android:layout_alignParentBottom="true"
+                android:background="@color/LightGray"
+                android:padding="10sp"
+                android:layout_margin="20sp"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <ImageView
+                    android:src="@drawable/filter"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp" />
 
-    </RelativeLayout>
+                <TextView
+                    android:text="Filter"
+                    android:textSize="16sp"
+                    android:textColor="@color/Black"
+                    android:layout_marginLeft="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-</LinearLayout>
+            </LinearLayout>
 
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start" >
+
+        <include layout="@layout/left_menu" />
+
+    </android.support.design.widget.NavigationView>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right">
+
+        <include layout="@layout/right_menu" />
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

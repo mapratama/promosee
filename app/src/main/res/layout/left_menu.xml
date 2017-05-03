@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/LightGray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/sosmed_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center|bottom"
+        android:gravity="center"
+        android:background="@color/White"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/facebook_icon"
+                android:src="@drawable/facebook_icon"
+                android:layout_width="36sp"
+                android:layout_height="36sp" />
+
+            <ImageView
+                android:layout_marginLeft="10sp"
+                android:id="@+id/twitter_icon"
+                android:src="@drawable/twitter_icon"
+                android:layout_width="36sp"
+                android:layout_height="36sp" />
+
+            <ImageView
+                android:layout_marginLeft="10sp"
+                android:id="@+id/instagram_icon"
+                android:src="@drawable/instagram_icon"
+                android:layout_width="36sp"
+                android:layout_height="36sp" />
+
+            <ImageView
+                android:layout_marginLeft="10sp"
+                android:id="@+id/youtube_icon"
+                android:src="@drawable/youtube_icon"
+                android:layout_width="36sp"
+                android:layout_height="36sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_above="@id/sosmed_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:text="MENU"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/Black"
+            android:layout_marginLeft="10sp"
+            android:layout_marginBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/home_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:background="@color/DarkGray"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Home"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/category_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:background="@color/DarkGray"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Kategori Voucher"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/partner_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:background="@color/DarkGray"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Partner Promosee"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/news_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:background="@color/DarkGray"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Berita &amp; Acara"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/faq_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:background="@color/DarkGray"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="FAQs"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/contact_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:background="@color/DarkGray"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Hubungi Kami"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+
+            <View
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginLeft="38dp"
+            android:background="@color/DarkGray"
+            android:layout_width="1dp"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

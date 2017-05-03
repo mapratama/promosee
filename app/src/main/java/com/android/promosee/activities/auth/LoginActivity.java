@@ -2,10 +2,15 @@ package com.android.promosee.activities.auth;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,6 +41,9 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import java.util.Arrays;
 
@@ -82,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                     params.put("phone", "");
                                     params.put("password", object.optString("id"));
                                     params.put("city", "");
-                                    params.put("referral_code", "");
+                                    params.put("refferal_code", "");
                                     params.put("fb_token", loginResult.getAccessToken().getToken());
                                     params.put("gcm_token", new Preferences(activity).getString("fcmToken"));
                                 } catch (JSONException e) {
@@ -141,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.register_button)
     public void registerButtonOnClick() {
         Intent intent = new Intent(this, RegisterActivity.class);
-        intent.putExtra("action", RegisterActivity.ADD);
         startActivity(intent);
     }
 

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +34,6 @@ import butterknife.OnTextChanged;
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 public class SearchMemberCardActivity extends BaseActivity {
 
@@ -44,7 +42,8 @@ public class SearchMemberCardActivity extends BaseActivity {
     private List<Item> items;
     private Realm realm;
     private ArrayList<Integer> tenantIDs;
-    private final int SCAN_BARCODE = 1, INPUT_MEMBER_CARD = 2, PERMISSION_CAMERA = 3;
+    public final static int SCAN_BARCODE = 1, INPUT_MEMBER_CARD = 2, REQUEST_NEW_MEMBER = 3,
+            PERMISSION_CAMERA = 4;
     private int tenantIDSelected;
 
     @Override
@@ -82,8 +81,32 @@ public class SearchMemberCardActivity extends BaseActivity {
         }
     }
 
-    private void showOptions() {
-        final CharSequence[] items = { "Barcode Scan", "Input Manual", "Cancel"};
+    private void showAddMemberCardOptions() {
+        final CharSequence[] items = {"Request Member Baru", "Sudah Ada Membercard", "Cancel"};
+
+        final Activity activity = this;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add Membercard");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (item == 0) {
+                    Intent intent = new Intent(activity, AddMemberCardActivity.class);
+                    intent.putExtra("tenantID", tenantIDSelected);
+                    intent.putExtra("action", REQUEST_NEW_MEMBER);
+                    startActivityForResult(intent, REQUEST_NEW_MEMBER);
+                }
+                else if (item == 1)
+                    showInputOptions();
+
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    private void showInputOptions() {
+        final CharSequence[] items = {"Barcode Scan", "Input Manual", "Cancel"};
 
         final Activity activity = this;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -96,6 +119,7 @@ public class SearchMemberCardActivity extends BaseActivity {
                 else if (item == 1) {
                     Intent intent = new Intent(activity, AddMemberCardActivity.class);
                     intent.putExtra("tenantID", tenantIDSelected);
+                    intent.putExtra("action", INPUT_MEMBER_CARD);
                     startActivityForResult(intent, INPUT_MEMBER_CARD);
                 }
                 else
@@ -128,8 +152,8 @@ public class SearchMemberCardActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             setupRecyclerView(null);
             if (requestCode == SCAN_BARCODE)
-                Membercard.add(this, tenantIDSelected, String.valueOf(data.getIntExtra("code", 0)), "");
-            else if (requestCode == INPUT_MEMBER_CARD) {
+                Membercard.add(this, tenantIDSelected, data.getStringExtra("code"), "");
+            else if (requestCode == INPUT_MEMBER_CARD || requestCode == REQUEST_NEW_MEMBER) {
                 setResult(RESULT_OK);
                 finish();
             }
@@ -210,7 +234,7 @@ public class SearchMemberCardActivity extends BaseActivity {
             public void onClick(View view) {
                 if (!active) {
                     tenantIDSelected = tenantID;
-                    showOptions();
+                    showAddMemberCardOptions();
                 }
             }
         }

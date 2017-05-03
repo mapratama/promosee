@@ -19,7 +19,7 @@
     <string name="referral_code">Referral Code</string>
     <string name="register">Register</string>
     <string name="forgot_password">Forgot Password</string>
-    <string name="description_login">Aplikasi yang memberikan info promo brand-brand pilihan kamu. Dapatkan seluruh promo dimana saja dan kapan saja. Berbelanja lewat voucher promo lebih hemat dan cermat</string>
+    <string name="description_login">Aplikasi yang memberikan info promo brand pilihan kamu. Dapatkan seluruh promo dimana saja &amp; kapan saja. Berbelanja lewat voucher promo lebih hemat dan cermat</string>
     <string name="not_yet_registered">Not yet Registered ?</string>
     <string name="sign_up_with_facebook">Sign up with facebook</string>
     <string name="join_promosee">Join PROMOSEE</string>

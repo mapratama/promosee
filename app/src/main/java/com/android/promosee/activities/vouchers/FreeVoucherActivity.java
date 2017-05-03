@@ -23,11 +23,13 @@ public class FreeVoucherActivity extends BaseActivity {
     @OnClick(R.id.send_button)
     public void sendButtonOnClick() {
         String message = getResources().getString(R.string.send_code) + " " + getResources()
-                .getString(R.string.get_free_voucher_code) + " " + getResources().getString(R.string.get_free_voucher_info);
+                .getString(R.string.get_free_voucher_code) + " " +
+                getResources().getString(R.string.get_free_voucher_info);
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra(Intent.EXTRA_TEXT, message + "\nhttps://play.google.com/store/apps/details?id="
+                + getPackageName());
         intent.setType("text/plain");
         startActivity(Intent.createChooser(intent, "Share via"));
     }

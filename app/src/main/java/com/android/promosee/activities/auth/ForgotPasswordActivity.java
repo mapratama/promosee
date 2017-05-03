@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.android.promosee.R;
 import com.android.promosee.activities.BaseActivity;
+import com.android.promosee.activities.BaseActivityWithoutLogin;
 import com.android.promosee.core.API;
 import com.android.promosee.core.Alert;
 import com.android.promosee.core.Session;
@@ -23,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 
-public class ForgotPasswordActivity extends BaseActivity {
+public class ForgotPasswordActivity extends BaseActivityWithoutLogin {
 
     @BindView(R.id.email_edittext) EditText emailEditText;
 

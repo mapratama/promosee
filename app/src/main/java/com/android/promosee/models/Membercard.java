@@ -2,6 +2,7 @@ package com.android.promosee.models;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.promosee.core.API;
@@ -124,14 +125,15 @@ public class Membercard extends RealmObject {
         return Realm.getDefaultInstance().where(Membercard.class).equalTo("id", id).findFirst();
     }
 
-    public static void add(final Activity activity, final int tenantID, String code, String noKtp) {
+    public static void add(final Activity activity, final int tenantID, String code, String id) {
         final LoadingDialog loadingDialog = new LoadingDialog(activity);
-        JSONObject params = API.getBaseJSONParams(activity);
+        loadingDialog.show();
 
+        JSONObject params = API.getBaseJSONParams(activity);
         try {
             params.put("id_tenant", tenantID);
             params.put("nomor_membercard", code);
-            params.put("nomor_ktp", noKtp);
+            params.put("nomor_ktp", id);
         } catch (JSONException e) {
             loadingDialog.dismiss();
         }

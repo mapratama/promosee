@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.android.promosee.R;
+import com.android.promosee.activities.vouchers.VoucherCategoryActivity;
 import com.android.promosee.core.Alert;
 import com.android.promosee.core.Preferences;
 

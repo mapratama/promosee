@@ -1,8 +1,12 @@
 package com.android.promosee.core;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.Html;
 import android.text.Spanned;
 
+import com.android.promosee.activities.WebViewActivity;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.gms.maps.model.LatLng;
@@ -56,6 +60,18 @@ public class Utils {
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c * 1000; // convert to meters
+    }
+
+    public static void setPhotoProfile(Preferences preferences, SimpleDraweeView simpleDraweeView) {
+        simpleDraweeView.setImageURI(Uri.parse(preferences.getString("imageUrl")));
+        simpleDraweeView.getHierarchy().setRoundingParams(
+                Utils.setCircleImage(simpleDraweeView));
+    }
+
+    public static void openWebView(Context context, String url) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra("url", url);
+        context.startActivity(intent);
     }
 }
 

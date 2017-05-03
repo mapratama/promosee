@@ -37,7 +37,11 @@ public class Session {
             preferences.set("city", userData.getString("city"));
             preferences.set("address", userData.getString("address"));
             preferences.set("imageUrl", userData.getString("image_url"));
-            preferences.set("balance", (long) userData.getDouble("balance"));
+
+            if (userData.isNull("balance"))
+                preferences.set("balance", (long) 0.0);
+            else
+                preferences.set("balance", (long) userData.getDouble("balance"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -67,31 +71,31 @@ public class Session {
     }
 
     public static void register(final Activity activity, JSONObject params, final String facebookID) {
-            final LoadingDialog loadingDialog = new LoadingDialog(activity);
-            loadingDialog.show();
+        final LoadingDialog loadingDialog = new LoadingDialog(activity);
+        loadingDialog.show();
 
-            API.post(activity, API.BASE_URL + "auth/register", params, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    if (!API.responseIsSuccess(activity, response)) return;
+        API.post(activity, API.BASE_URL + "auth/register", params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                if (!API.responseIsSuccess(activity, response)) return;
 
-                    Session.bootstrap(activity, response);
+                Session.bootstrap(activity, response);
 
-                    if (facebookID != null)
-                        new Preferences(activity).set("imageUrl"
-                                , "http://graph.facebook.com/" + facebookID +"/picture?type=large");
-                }
+                if (facebookID != null)
+                    new Preferences(activity).set("imageUrl"
+                            , "http://graph.facebook.com/" + facebookID +"/picture?type=large");
+            }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable,
-                                      JSONObject errorResponse) {
-                    API.handleFailure(activity, statusCode, errorResponse);
-                }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable,
+                                  JSONObject errorResponse) {
+                API.handleFailure(activity, statusCode, errorResponse);
+            }
 
-                @Override
-                public void onFinish() {
-                    loadingDialog.dismiss();
-                }
-            });
+            @Override
+            public void onFinish() {
+                loadingDialog.dismiss();
+            }
+        });
     }
 }

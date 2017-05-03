@@ -1,5 +1,7 @@
 package com.android.promosee.models;
 
+import android.util.Log;
+
 import com.android.promosee.core.DateUtils;
 import com.android.promosee.core.ParseJSON;
 
@@ -72,6 +74,7 @@ public class Transaction extends RealmObject {
     }
 
     public static Transaction fromJSON(JSONObject response, Realm realm) throws JSONException {
+        Log.e("####", "" + response);
         Transaction transaction = new Transaction();
         transaction.setId(ParseJSON.getInt(response.getString("id")));
         transaction.setDate(DateUtils.fromDateString(response.getString("date")));

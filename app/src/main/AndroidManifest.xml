@@ -125,20 +125,18 @@
             android:name=".activities.vouchers.FreeVoucherActivity"
             android:screenOrientation="portrait" />
 
-        <service
-            android:name=".services.FirebaseInstanceService">
+        <service android:name=".services.FirebaseInstanceService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".services.FirebaseCloudMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".services.FirebaseCloudMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
+        <activity android:name=".activities.auth.EditProfileActivity"></activity>
     </application>
 
 </manifest>

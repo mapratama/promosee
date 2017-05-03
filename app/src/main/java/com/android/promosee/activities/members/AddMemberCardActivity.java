@@ -21,9 +21,9 @@ public class AddMemberCardActivity extends BaseActivity {
 
     @BindView(R.id.banner) SimpleDraweeView banner;
     @BindView(R.id.code_edittext) EditText codeEditText;
-    @BindView(R.id.ktp_edittext) EditText ktpEditText;
 
     private Tenant tenant;
+    private int action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,12 @@ public class AddMemberCardActivity extends BaseActivity {
         ButterKnife.bind(this);
 //        setupBackButtonBar();
 
+        action = getIntent().getIntExtra("action", 0);
+        if (action == SearchMemberCardActivity.REQUEST_NEW_MEMBER)
+            codeEditText.setHint("Nomor ktp");
+        else
+            codeEditText.setHint("Nomor membercard");
+
         tenant = Tenant.get(getIntent().getIntExtra("tenantID", 0));
         banner.setImageURI(Uri.parse(tenant.getBannerUrl()));
     }
@@ -39,9 +45,13 @@ public class AddMemberCardActivity extends BaseActivity {
     @OnClick(R.id.submit_button)
     public void submitButtonOnClick() {
         if (!Validators.validateLength(codeEditText, 1))
-            Alert.dialog(this, "Silahkan isi nomor membercard anda");
-        else
-            Membercard.add(this, tenant.getId(), codeEditText.getText().toString(),
-                    ktpEditText.getText().toString());
+            Alert.dialog(this, "Maaf data yang anda input belum lengkap");
+        else {
+            String code = codeEditText.getText().toString();
+            if (action == SearchMemberCardActivity.REQUEST_NEW_MEMBER)
+                Membercard.add(this, tenant.getId(), "", code);
+            else
+                Membercard.add(this, tenant.getId(), code, "");
+        }
     }
 }
