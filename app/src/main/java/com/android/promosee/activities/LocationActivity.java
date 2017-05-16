@@ -36,6 +36,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
@@ -70,33 +72,59 @@ public class LocationActivity extends LocationBaseActivity implements GoogleMap.
         builder.include(location);
 
         RealmList<com.android.promosee.models.Location> locations = new RealmList<>();
+        ArrayList<Integer> categoryIDs = new ArrayList<>();
         if (categoryName == null) {
-            RealmResults<com.android.promosee.models.Location> locationResults = realm
-                    .where(com.android.promosee.models.Location.class).isNotNull("latitude").isNotNull("longitude").findAll();
-            for (com.android.promosee.models.Location location : locationResults) locations.add(location);
+            for (Category category : realm.where(Category.class).findAll()) {
+                for (Tenant tenant : category.getTenants()) {
+                    for (com.android.promosee.models.Location location : tenant.getLocations()) {
+                        locations.add(location);
+                        categoryIDs.add(category.getId());
+                    }
+                }
+            }
         }
         else {
-            for (Tenant tenant : realm.where(Category.class).equalTo("name", categoryName).findFirst().getTenants()) {
-                for (com.android.promosee.models.Location location : tenant.getLocations())
+            Category category = realm.where(Category.class).equalTo("name", categoryName).findFirst();
+            int categoryID = category.getId();
+            for (Tenant tenant : category.getTenants()) {
+                for (com.android.promosee.models.Location location : tenant.getLocations()) {
                     locations.add(location);
+                    categoryIDs.add(categoryID);
+                }
             }
         }
 
-        for (com.android.promosee.models.Location location : locations) {
+        for (int i = 0; i < locations.size(); i++) {
+            com.android.promosee.models.Location location = locations.get(i);
             LatLng voucherLocation = new LatLng(location.getLatitude(), location.getLongitude());
             if (justNearby && Utils.getDistance(this.location, voucherLocation) > 10000)
                 continue;
 
-            markerOptions = new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.pin_location_icon))
-                .position(voucherLocation);
-
-            googleMap.addMarker(markerOptions);
+            googleMap.addMarker(getMarker(voucherLocation, categoryIDs.get(i)));
             builder.include(voucherLocation);
         }
 
         googleMap.setOnMarkerClickListener(this);
         googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 150));
+    }
+
+    private MarkerOptions getMarker(LatLng location, int categoryID) {
+        int icon;
+        if (categoryID == 1) icon = R.mipmap.pin_location_food;
+        else if (categoryID == 2) icon = R.mipmap.pin_location_game;
+        else if (categoryID == 3) icon = R.mipmap.pin_location_sports;
+        else if (categoryID == 4) icon = R.mipmap.pin_location_elektronik;
+        else if (categoryID == 5) icon = R.mipmap.pin_location_lifestyle;
+        else if (categoryID == 7) icon = R.mipmap.pin_location_beauty;
+        else if (categoryID == 8) icon = R.mipmap.pin_location_home;
+        else if (categoryID == 9) icon = R.mipmap.pin_location_food;
+        else if (categoryID == 12) icon = R.mipmap.pin_location_medical;
+        else if (categoryID == 13) icon = R.mipmap.pin_location_education;
+        else icon = R.mipmap.pin_location_icon;
+
+        return new MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromResource(icon))
+                .position(location);
     }
 
     @OnClick(R.id.current_location_icon)

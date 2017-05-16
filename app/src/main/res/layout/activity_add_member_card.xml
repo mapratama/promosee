@@ -91,14 +91,61 @@
                 android:scaleType="fitXY" />
 
             <LinearLayout
-                android:layout_marginTop="40sp"
+                android:layout_marginTop="25sp"
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
+                android:layout_marginBottom="30dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/name_edittext"
+                    android:textColorHint="@color/LightRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_box_shadow"
+                    android:textSize="12sp"
+                    android:fontFamily="ubuntu-light"
+                    android:hint="Nama"
+                    android:visibility="gone"
+                    android:enabled="false"
+                    android:paddingLeft="10dp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/mobile_number_edittext"
+                    android:textColorHint="@color/LightRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_box_shadow"
+                    android:textSize="12sp"
+                    android:fontFamily="ubuntu-light"
+                    android:hint="Nomor Telepon"
+                    android:enabled="false"
+                    android:paddingLeft="10dp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/email_edittext"
+                    android:textColorHint="@color/LightRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_box_shadow"
+                    android:textSize="12sp"
+                    android:fontFamily="ubuntu-light"
+                    android:hint="Email"
+                    android:enabled="false"
+                    android:paddingLeft="10dp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:layout_marginTop="15dp"
                     android:id="@+id/code_edittext"
                     android:textColorHint="@color/LightRed"
                     android:layout_width="match_parent"
@@ -108,6 +155,22 @@
                     android:inputType="number"
                     android:fontFamily="ubuntu-light"
                     android:hint="Nomor membercard"
+                    android:paddingLeft="10dp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:visibility="gone"
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/address_edittext"
+                    android:textColorHint="@color/LightRed"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/bg_box_shadow"
+                    android:textSize="12sp"
+                    android:gravity="left"
+                    android:fontFamily="ubuntu-light"
+                    android:hint="Alamat"
+                    android:inputType="textMultiLine"
                     android:paddingLeft="10dp"
                     android:textStyle="italic" />
 

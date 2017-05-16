@@ -152,7 +152,7 @@ public class SearchMemberCardActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             setupRecyclerView(null);
             if (requestCode == SCAN_BARCODE)
-                Membercard.add(this, tenantIDSelected, data.getStringExtra("code"), "");
+                Membercard.add(this, tenantIDSelected, data.getStringExtra("code"), "", "");
             else if (requestCode == INPUT_MEMBER_CARD || requestCode == REQUEST_NEW_MEMBER) {
                 setResult(RESULT_OK);
                 finish();

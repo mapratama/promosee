@@ -3,11 +3,13 @@ package com.android.promosee.activities.members;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.android.promosee.R;
 import com.android.promosee.activities.BaseActivity;
 import com.android.promosee.core.Alert;
+import com.android.promosee.core.Preferences;
 import com.android.promosee.core.Validators;
 import com.android.promosee.models.Membercard;
 import com.android.promosee.models.Tenant;
@@ -21,6 +23,10 @@ public class AddMemberCardActivity extends BaseActivity {
 
     @BindView(R.id.banner) SimpleDraweeView banner;
     @BindView(R.id.code_edittext) EditText codeEditText;
+    @BindView(R.id.name_edittext) EditText nameEditText;
+    @BindView(R.id.email_edittext) EditText emailEditText;
+    @BindView(R.id.mobile_number_edittext) EditText mobileNumberEditText;
+    @BindView(R.id.address_edittext) EditText addressEditText;
 
     private Tenant tenant;
     private int action;
@@ -33,8 +39,23 @@ public class AddMemberCardActivity extends BaseActivity {
 //        setupBackButtonBar();
 
         action = getIntent().getIntExtra("action", 0);
-        if (action == SearchMemberCardActivity.REQUEST_NEW_MEMBER)
+        if (action == SearchMemberCardActivity.REQUEST_NEW_MEMBER) {
             codeEditText.setHint("Nomor ktp");
+            nameEditText.setVisibility(View.VISIBLE);
+            emailEditText.setVisibility(View.VISIBLE);
+            mobileNumberEditText.setVisibility(View.VISIBLE);
+            addressEditText.setVisibility(View.VISIBLE);
+
+            Preferences preferences = new Preferences(this);
+            nameEditText.setText(preferences.getString("name"));
+            emailEditText.setText(preferences.getString("email"));
+            mobileNumberEditText.setText(preferences.getString("phone"));
+
+            String address = "";
+            if (!preferences.getString("address").equals("")) address = address + preferences.getString("address");
+            if (!preferences.getString("city").equals("")) address = address + " " + preferences.getString("city");
+            addressEditText.setText(address);
+        }
         else
             codeEditText.setHint("Nomor membercard");
 
@@ -49,9 +70,9 @@ public class AddMemberCardActivity extends BaseActivity {
         else {
             String code = codeEditText.getText().toString();
             if (action == SearchMemberCardActivity.REQUEST_NEW_MEMBER)
-                Membercard.add(this, tenant.getId(), "", code);
+                Membercard.add(this, tenant.getId(), "", code, addressEditText.getText().toString());
             else
-                Membercard.add(this, tenant.getId(), code, "");
+                Membercard.add(this, tenant.getId(), code, "", "");
         }
     }
 }

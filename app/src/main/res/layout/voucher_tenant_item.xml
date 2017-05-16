@@ -1,45 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_marginRight="5sp"
-    android:layout_marginLeft="5sp"
-    android:layout_width="150sp"
-    android:layout_height="240sp">
+    android:background="@color/LightGray"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="170sp"/>
+    <RelativeLayout
+        android:padding="5sp"
+        android:layout_margin="3sp"
+        android:background="@color/White"
+        android:layout_width="135sp"
+        android:layout_height="200sp">
 
         <TextView
-            android:id="@+id/name_text"
-            android:layout_marginTop="10sp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/price_text"
+            android:gravity="right"
+            android:textAllCaps="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/Black"
-            android:gravity="center"
-            android:maxLines="2"
-            android:text="FREE\nPete's Vietnamesse"/>
+            android:textColor="@color/Green"
+            android:textSize="12sp"/>
 
-        <TextView
-            android:layout_marginTop="5sp"
-            android:id="@+id/periode_text"
-            android:maxLines="1"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:textColor="@color/DarkRed"
-            android:gravity="center"
-            android:text="1 oktober - 2 oktober 2016"/>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="120sp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/title_text"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="5sp"
+                android:textAllCaps="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Black"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:id="@+id/tenant_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Gray"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

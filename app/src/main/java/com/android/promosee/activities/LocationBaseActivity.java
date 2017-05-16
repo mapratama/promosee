@@ -35,6 +35,7 @@ public class LocationBaseActivity extends AppCompatActivity implements GoogleApi
         LocationListener {
 
     public GoogleMap googleMap;
+    public TouchEnabledMapFragment touchEnabledMapFragment;
     private MapFragment mapFragment;
     private GoogleApiClient apiClient;
     public LatLng location, defaultLocation = new LatLng(-6.174796, 106.821959);
@@ -64,15 +65,29 @@ public class LocationBaseActivity extends AppCompatActivity implements GoogleApi
             finish();
         }
 
-        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mGoogleMap) {
-                googleMap = mGoogleMap;
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 17));
-                apiClient.connect();
-            }
-        });
+        if (viewID == R.layout.activity_location) {
+            mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap mGoogleMap) {
+                    googleMap = mGoogleMap;
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 17));
+                    apiClient.connect();
+                }
+            });
+        }
+        else {
+            touchEnabledMapFragment = (TouchEnabledMapFragment) getFragmentManager().findFragmentById(R.id.map);
+            touchEnabledMapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap mGoogleMap) {
+                    googleMap = mGoogleMap;
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 17));
+                    apiClient.connect();
+                }
+            });
+        }
+
     }
 
     public void setupBackButtonBar() {

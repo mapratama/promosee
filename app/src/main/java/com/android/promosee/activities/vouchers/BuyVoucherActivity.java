@@ -1,34 +1,27 @@
 package com.android.promosee.activities.vouchers;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.promosee.R;
-import com.android.promosee.activities.BaseActivity;
 import com.android.promosee.activities.LocationBaseActivity;
+import com.android.promosee.activities.TouchEnabledMapFragment;
 import com.android.promosee.activities.partners.PartnerLocationActivity;
 import com.android.promosee.core.API;
 import com.android.promosee.core.Alert;
@@ -37,22 +30,11 @@ import com.android.promosee.core.Session;
 import com.android.promosee.core.Utils;
 import com.android.promosee.dialogs.BankListDialog;
 import com.android.promosee.dialogs.LoadingDialog;
-import com.android.promosee.models.Category;
 import com.android.promosee.models.Tenant;
 import com.android.promosee.models.Transaction;
 import com.android.promosee.models.Voucher;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -72,7 +54,6 @@ import butterknife.OnClick;
 import cz.msebera.android.httpclient.Header;
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 public class BuyVoucherActivity extends LocationBaseActivity {
 
@@ -89,6 +70,7 @@ public class BuyVoucherActivity extends LocationBaseActivity {
     @BindView(R.id.rb_wallet) RadioButton walletRadioButton;
     @BindView(R.id.rb_pulsa) RadioButton pulsaRadioButton;
     @BindView(R.id.location_recyclerview) RecyclerView locationRecyclerView;
+    @BindView(R.id.scroll_view) ScrollView scrollView;
 
     private Voucher voucher;
     private Tenant tenant;
@@ -111,6 +93,13 @@ public class BuyVoucherActivity extends LocationBaseActivity {
         modeWallet = true;
         realm = Realm.getDefaultInstance();
         setRadioButton();
+
+        touchEnabledMapFragment.setListener(new TouchEnabledMapFragment.OnTouchListener() {
+            @Override
+            public void onTouch() {
+                scrollView.requestDisallowInterceptTouchEvent(true);
+            }
+        });
 
         voucher = Voucher.get(getIntent().getIntExtra("voucherID", 0));
         tenant = voucher.getTenant();

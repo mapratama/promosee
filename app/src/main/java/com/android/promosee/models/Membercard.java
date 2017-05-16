@@ -125,7 +125,7 @@ public class Membercard extends RealmObject {
         return Realm.getDefaultInstance().where(Membercard.class).equalTo("id", id).findFirst();
     }
 
-    public static void add(final Activity activity, final int tenantID, String code, String id) {
+    public static void add(final Activity activity, final int tenantID, String code, String id, String address) {
         final LoadingDialog loadingDialog = new LoadingDialog(activity);
         loadingDialog.show();
 
@@ -134,6 +134,7 @@ public class Membercard extends RealmObject {
             params.put("id_tenant", tenantID);
             params.put("nomor_membercard", code);
             params.put("nomor_ktp", id);
+            params.put("address", address);
         } catch (JSONException e) {
             loadingDialog.dismiss();
         }

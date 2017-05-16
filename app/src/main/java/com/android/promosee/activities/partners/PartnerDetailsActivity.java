@@ -21,6 +21,7 @@ import com.android.promosee.activities.members.MemberCardsIndexActivity;
 import com.android.promosee.activities.vouchers.BuyVoucherActivity;
 import com.android.promosee.activities.vouchers.VoucherCategoryActivity;
 import com.android.promosee.activities.vouchers.VoucherIndexActivity;
+import com.android.promosee.core.Utils;
 import com.android.promosee.dialogs.FilterCategoryDialog;
 import com.android.promosee.dialogs.VoucherDetailsDialog;
 import com.android.promosee.models.Category;
@@ -106,10 +107,13 @@ public class PartnerDetailsActivity extends BaseActivity {
         public void onBindViewHolder(VoucherViewHolder holder, final int position) {
             Voucher voucher = vouchers.get(position);
 
-            holder.photo.setImageURI(Uri.parse(voucher.getSlideImageUrl()));
-            holder.nameTextView.setText(voucher.getName());
-            holder.periodeTextView.setText(new SimpleDateFormat("dd MMM", Locale.US).format(voucher.getStartDate())
-                    + " - " + new SimpleDateFormat("dd MMM yyyy", Locale.US).format(voucher.getEndDate()));
+            holder.photo.setImageURI(Uri.parse(voucher.getVoucherImageUrl()));
+            holder.titleTextView.setText(voucher.getName());
+            holder.tenantTextView.setText(voucher.getDescription());
+
+            double price = voucher.getPrice();
+            if (price == 0) holder.priceTextView.setText("FREE");
+            else holder.priceTextView.setText("Rp. " + Utils.addThousandSeparator(price));
         }
 
         @Override
@@ -125,8 +129,9 @@ public class PartnerDetailsActivity extends BaseActivity {
         class VoucherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
             @BindView(R.id.photo) SimpleDraweeView photo;
-            @BindView(R.id.name_text) TextView nameTextView;
-            @BindView(R.id.periode_text) TextView periodeTextView;
+            @BindView(R.id.title_text) TextView titleTextView;
+            @BindView(R.id.tenant_text) TextView tenantTextView;
+            @BindView(R.id.price_text) TextView priceTextView;
 
             public VoucherViewHolder(View view) {
                 super(view);
