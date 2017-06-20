@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -183,7 +184,7 @@ public class BuyVoucherActivity extends LocationBaseActivity {
                 realm.beginTransaction();
                 try {
                     Transaction.fromJSON(response.getJSONObject("transaction"), realm);
-                    Session.saveUserData(activity, response.getJSONObject("customer"));
+                    Session.saveUserData(activity, response.getJSONObject("user"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

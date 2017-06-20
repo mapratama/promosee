@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,8 @@ public class MyVoucherIndexActivity extends BaseActivity {
         vouchers = new RealmList<>();
         RealmResults<Transaction> transactions = Realm.getDefaultInstance()
                 .where(Transaction.class).findAllSorted("date");
-        for (Transaction transaction : transactions) vouchers.add(transaction.getVoucher());
+        for (Transaction transaction : transactions)
+            vouchers.add(transaction.getVoucher());
 
         voucherRecyclerView.setAdapter(new VoucherAdapter());
         voucherRecyclerView.setLayoutManager(new GridLayoutManager(activity, 3));

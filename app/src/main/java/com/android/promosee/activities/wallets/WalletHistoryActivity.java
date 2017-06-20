@@ -63,13 +63,6 @@ public class WalletHistoryActivity extends BaseActivity {
         activity = this;
         setupBackButtonBar();
 
-        Preferences preferences = new Preferences(this);
-        Realm realm = Realm.getDefaultInstance();
-
-        balanceTextView.setText("Rp. " + Utils.addThousandSeparator(preferences.getLong("balance")));
-        totalVoucherTextView.setText(realm.where(Transaction.class).equalTo("used", false).count() + " Voucher");
-        totalRedeemTextView.setText(realm.where(Redemption.class).count() + " Voucher");
-
         setupRecyclerView();
 
         API.get(API.BASE_URL + "wallets/created", API.getBaseParams(this), new JsonHttpResponseHandler() {
@@ -78,6 +71,7 @@ public class WalletHistoryActivity extends BaseActivity {
                 try {
                     Wallet.fromJSONArray(response.getJSONArray("wallets"));
                     Session.saveUserData(activity, response.getJSONObject("user"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -106,8 +100,14 @@ public class WalletHistoryActivity extends BaseActivity {
     }
 
     private void setupRecyclerView() {
-        wallets = Realm.getDefaultInstance().where(Wallet.class).findAllSorted("date", Sort.DESCENDING);
+        Preferences preferences = new Preferences(this);
+        Realm realm = Realm.getDefaultInstance();
 
+        balanceTextView.setText("Rp. " + Utils.addThousandSeparator(preferences.getLong("balance")));
+        totalVoucherTextView.setText(realm.where(Transaction.class).equalTo("used", false).count() + " Voucher");
+        totalRedeemTextView.setText(realm.where(Redemption.class).count() + " Voucher");
+
+        wallets = Realm.getDefaultInstance().where(Wallet.class).findAllSorted("date", Sort.DESCENDING);
         paymentRecyclerView.setAdapter(new PaymentAdapter());
         paymentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

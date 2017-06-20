@@ -177,13 +177,15 @@ public class MainActivity extends BaseActivity {
         });
 
         setupBaseVoucherRecyclerView();
+    }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
         Utils.setPhotoProfile(preferences, photoProfile);
         nameTextView.setText(preferences.getString("name"));
         balanceTextView.setText("Rp. " + Utils.addThousandSeparator(preferences.getLong("balance")));
     }
-
 
     @OnClick(R.id.category_button)
     public void categoryButtonOnClick() {
