@@ -18,8 +18,8 @@ import cz.msebera.android.httpclient.entity.StringEntity;
  * Created by imam on 26/09/16.
  */
 public class API {
-    public static String BASE_URL = "http://promosee.linkincube.com/api/";
-    public static String IMAGE_URL = "http://promosee.linkincube.com/";
+    public static String BASE_URL = "http://admin-promosee.garansee.com/api/";
+    public static String IMAGE_URL = "http://admin-promosee.garansee.com/";
     public static String TOKEN = "9090opop";
 
     private static AsyncHttpClient getHttpClient() {
