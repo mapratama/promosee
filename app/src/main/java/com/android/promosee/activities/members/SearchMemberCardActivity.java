@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,7 @@ public class SearchMemberCardActivity extends BaseActivity {
         String lastInitialTenantName = "";
         items = new ArrayList<>();
 
-        RealmQuery<Tenant> query = realm.where(Tenant.class);
+        RealmQuery<Tenant> query = realm.where(Tenant.class).notEqualTo("type", "online");
         if (key != null) query.contains("name",key, Case.INSENSITIVE);
 
         for (Tenant tenant : query.findAllSorted("name")) {

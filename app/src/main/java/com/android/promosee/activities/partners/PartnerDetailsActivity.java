@@ -43,10 +43,10 @@ import io.realm.Sort;
 public class PartnerDetailsActivity extends BaseActivity {
 
     @BindView(R.id.banner) SimpleDraweeView banner;
-    @BindView(R.id.name_text) TextView nameTextView;
+    @BindView(R.id.name_partner_text) TextView nameTextView;
     @BindView(R.id.name_membercard_text) TextView nameMembercardTextView;
-    @BindView(R.id.category_text) TextView categoryTextView;
-    @BindView(R.id.address_text) TextView addressTextView;
+    @BindView(R.id.category_partner_text) TextView categoryTextView;
+    @BindView(R.id.address_partner_text) TextView addressTextView;
     @BindView(R.id.total_voucher) TextView totalVoucherTextView;
     @BindView(R.id.voucher_recyclerview) RecyclerView voucherRecyclerView;
     @BindView(R.id.offline_member_layout) RelativeLayout offlineMemberLayout;
@@ -92,7 +92,7 @@ public class PartnerDetailsActivity extends BaseActivity {
 
     @OnClick(R.id.add_membercard_layout)
     public void addMembercardLayoutOnClick() {
-        startActivity(new Intent(this, MemberCardsIndexActivity.class));
+//        startActivity(new Intent(this, MemberCardsIndexActivity.class));
     }
 
     class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder> {

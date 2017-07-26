@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -113,7 +114,7 @@ public class BaseActivity extends AppCompatActivity {
         findViewById(R.id.my_membercards_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(activity, MemberCardsIndexActivity.class));
+//                startActivity(new Intent(activity, MemberCardsIndexActivity.class));
             }
         });
 
@@ -252,6 +253,7 @@ public class BaseActivity extends AppCompatActivity {
 
     private void setPhotoProfile(SimpleDraweeView simpleDraweeView) {
         Preferences preferences = new Preferences(this);
+        Log.e("###", preferences.getString("imageUrl"));
         simpleDraweeView.setImageURI(Uri.parse(preferences.getString("imageUrl")));
         simpleDraweeView.getHierarchy().setRoundingParams(
                 Utils.setCircleImage(simpleDraweeView));

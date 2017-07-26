@@ -224,7 +224,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.my_membercards_button)
     public void myMembercardsButtonOnClick() {
-        startActivity(new Intent(activity, MemberCardsIndexActivity.class));
+//        startActivity(new Intent(activity, MemberCardsIndexActivity.class));
     }
 
     @OnClick(R.id.my_wallets_button)

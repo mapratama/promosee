@@ -163,7 +163,7 @@
 
                 <Button
                     android:layout_marginTop="20sp"
-                    android:id="@+id/location_button"
+                    android:id="@+id/first_button"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -172,7 +172,7 @@
                     android:layout_marginBottom="10dp"/>
 
                 <Button
-                    android:id="@+id/redeem_button"
+                    android:id="@+id/second_button"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

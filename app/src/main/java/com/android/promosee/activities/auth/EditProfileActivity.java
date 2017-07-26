@@ -37,10 +37,8 @@ public class EditProfileActivity extends BaseActivity {
     @BindView(R.id.confirm_password_edittext) EditText confirmPasswordEditText;
     @BindView(R.id.city_edittext) EditText cityEditText;
     @BindView(R.id.referral_code_edittext) EditText referralCodeEditText;
-    @BindView(R.id.title_text)
-    TextView titleTextView;
-    @BindView(R.id.register_button)
-    Button registerButton;
+    @BindView(R.id.title_text) TextView titleTextView;
+    @BindView(R.id.register_button) Button registerButton;
 
     public static final int ADD = 1, EDIT = 2, VIEW = 3;
     private int action;
