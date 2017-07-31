@@ -1,6 +1,9 @@
 package com.android.promosee.dialogs;
 
 import android.app.DialogFragment;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.promosee.R;
 import com.android.promosee.activities.WebViewActivity;
@@ -32,6 +36,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 /**
  * Created by angga on 05/08/16.
@@ -67,7 +73,7 @@ public class VoucherDetailsDialog extends DialogFragment {
         tenant = voucher.getTenant();
         if (tenant.getType().equals("online")) {
             codeTextView.setText("Kode Voucher : ");
-            priceTextView.setText(tenant.getCode());
+            priceTextView.setText(voucher.getRedeemCode());
             submitButton.setText("Lanjut ke Website");
         }
         else {
@@ -77,6 +83,14 @@ public class VoucherDetailsDialog extends DialogFragment {
         }
 
         return view;
+    }
+
+    @OnClick(R.id.copy_button)
+    public void copyButtonOnClick() {
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", voucher.getRedeemCode());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(getActivity(), "Kode voucher telah disalin.", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.submit_button)

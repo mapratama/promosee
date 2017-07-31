@@ -89,8 +89,17 @@
             android:textColor="@color/LightRed"
             android:textSize="16sp"
             android:layout_marginLeft="5sp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/copy_button"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:text="Copy"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/White"
+            android:background="@color/Green"/>
 
     </LinearLayout>
 
