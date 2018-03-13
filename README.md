@@ -1,4 +1,8 @@
-**Registration **\r\nPendaftaran melalui menu registration \r\n**Period**\r\n01 March 2018 - 31 March 2018\r\n\r\n> **Venue**\r\n> UpperRoom (Annex 1)\r\n\r\n**Schedule**\r\nSat, 31 March 2018 \r\n10:00 - 13:00\r\n\r\n**Tema**: Single Forever 2.0\r\nPembicara: Ps. Jeffrey Rachmat\r\nUndangan Rp 100.000,-/pax tersedia di *Connection Area* tanggal 11, 18, dan 25 Februari 2018.\r\n(Selama persediaan masih ada.)"
+**Registration **
+Pendaftaran melalui menu registration 
+**Period**
+01 March 2018 - 31 March 2018 
+**Venue**\r\n> UpperRoom (Annex 1)\r\n\r\n**Schedule**\r\nSat, 31 March 2018 \r\n10:00 - 13:00\r\n\r\n**Tema**: Single Forever 2.0\r\nPembicara: Ps. Jeffrey Rachmat\r\nUndangan Rp 100.000,-/pax tersedia di *Connection Area* tanggal 11, 18, dan 25 Februari 2018.\r\n(Selama persediaan masih ada.)"
 
 ### Perubahan
 - tambahkan satu field gcm_token, facebook_token di table tb_customer, dengan tipe data string
